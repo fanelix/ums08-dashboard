@@ -532,31 +532,14 @@ function renderTotalizerChart() {
   var tot = DATA.totalizer;
   var rf  = DATA.rainfall;
 
-  // Map rainfall to totalizer dates (nearest date within ±4 days, else sum week)
-  var rfMap = {};
-  rf.forEach(r => { rfMap[r.date] = r.rainfall_mm; });
-
-  // For each totalizer date, sum rainfall in the preceding 7 days
-  var weeklyRf = tot.map(t => {
-    var end   = new Date(t.date);
-    var start = new Date(t.date); start.setDate(start.getDate() - 6);
-    var sum = 0;
-    rf.forEach(r => {
-      var d = new Date(r.date);
-      if (d >= start && d <= end) sum += r.rainfall_mm;
-    });
-    return sum;
-  });
-
   var ctx = document.getElementById('chart-totalizer').getContext('2d');
   charts['totalizer'] = new Chart(ctx, {
     data: {
-      labels: tot.map(t => t.date),
       datasets: [
         {
           type: 'line',
           label: 'Totalizer (m³)',
-          data: tot.map(t => t.totalizer_m3),
+          data: tot.map(t => ({ x: t.date, y: t.totalizer_m3 })),
           borderColor: '#f0a500',
           backgroundColor: 'rgba(240,165,0,0.08)',
           borderWidth: 2,
@@ -571,14 +554,16 @@ function renderTotalizerChart() {
         },
         {
           type: 'bar',
-          label: '7-day Rainfall (mm)',
-          data: weeklyRf,
-          backgroundColor: 'rgba(68,147,248,0.35)',
-          borderColor: 'rgba(68,147,248,0.7)',
+          label: 'Daily Rainfall (mm)',
+          data: rf.map(r => ({ x: r.date, y: r.rainfall_mm })),
+          backgroundColor: 'rgba(68,147,248,0.45)',
+          borderColor: 'rgba(68,147,248,0.8)',
           borderWidth: 1,
           yAxisID: 'y2',
           animation: false,
-          order: 2
+          order: 2,
+          barPercentage: 1.0,
+          categoryPercentage: 1.0
         }
       ]
     },
@@ -591,27 +576,36 @@ function renderTotalizerChart() {
           backgroundColor: '#161b22',
           borderColor: '#30363d', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
-          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
             label: ctx => {
               var v = ctx.parsed.y;
               if (ctx.datasetIndex === 0) return ' Totalizer: ' + v.toLocaleString() + ' m³';
-              return ' 7-day rain: ' + v.toFixed(1) + ' mm';
+              return ' Daily rain: ' + v.toFixed(1) + ' mm';
             }
           }
         }
       },
       scales: {
-        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 12, maxRotation: 0 } },
+        x: {
+          type: 'time',
+          time: {
+            unit: 'month',
+            tooltipFormat: 'yyyy-MM-dd',
+            displayFormats: { month: 'MMM yyyy' }
+          },
+          grid: GRID,
+          ticks: { ...TICK, maxRotation: 0 }
+        },
         y: {
           position: 'left', grid: GRID, ticks: TICK,
           title: { display: true, text: 'm³', color: '#f0a500', font: { size: 9 } }
         },
         y2: {
-    position: 'right', grid: { display: false }, ticks: TICK,
-    title: { display: true, text: 'mm', color: '#4493f8', font: { size: 9 } },
-    min: 0
-}
+          position: 'right', grid: { display: false }, ticks: TICK,
+          title: { display: true, text: 'mm/day', color: '#4493f8', font: { size: 9 } },
+          min: 0
+        }
       }
     }
   });
