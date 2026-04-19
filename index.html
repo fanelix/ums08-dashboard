@@ -771,6 +771,121 @@ function renderWLChart() {
     }
   });
 }
+	function renderDoublesMassChart() {
+  destroyChart('dm');
+  var tot = DATA.totalizer;
+  var rf  = DATA.rainfall;
+
+  // Build cumulative rainfall indexed by date for fast lookup
+  var rfByDate = {};
+  var cumRain = 0;
+  rf.forEach(function(r) {
+    cumRain += r.rainfall_mm;
+    rfByDate[r.date] = cumRain;
+  });
+
+  // For each totalizer week-end date, find nearest cumulative rainfall
+  // We snap to the closest available rainfall date within ±3 days
+  function nearestCumRain(dateStr) {
+    if (rfByDate[dateStr] !== undefined) return rfByDate[dateStr];
+    var d = new Date(dateStr);
+    for (var delta = 1; delta <= 3; delta++) {
+      var dp = new Date(d); dp.setDate(d.getDate() + delta);
+      var dm = new Date(d); dm.setDate(d.getDate() - delta);
+      var sp = dp.toISOString().slice(0,10);
+      var sm = dm.toISOString().slice(0,10);
+      if (rfByDate[sp] !== undefined) return rfByDate[sp];
+      if (rfByDate[sm] !== undefined) return rfByDate[sm];
+    }
+    return null;
+  }
+
+  // Build scatter points: x = cumulative rainfall (mm), y = cumulative seepage (m³)
+  var points = [];
+  tot.forEach(function(t) {
+    var cr = nearestCumRain(t.date);
+    if (cr !== null && t.totalizer_m3 !== null) {
+      points.push({ x: cr, y: t.totalizer_m3, date: t.date });
+    }
+  });
+
+  if (!points.length) {
+    console.warn('Double-mass: no overlapping data points');
+    return;
+  }
+
+  var ctx = document.getElementById('chart-dm').getContext('2d');
+  charts['dm'] = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Cum. Seepage vs Cum. Rainfall',
+        data: points,
+        borderColor: '#f0a500',
+        backgroundColor: 'rgba(240,165,0,0.7)',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        showLine: true,
+        borderWidth: 1.5,
+        tension: 0,
+        animation: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'nearest', intersect: false },
+      plugins: {
+        legend: { position: 'top' },
+        tooltip: {
+          backgroundColor: '#161b22',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleFont: { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: {
+            title: function(items) {
+              return points[items[0].dataIndex]
+                ? 'Week: ' + points[items[0].dataIndex].date
+                : '';
+            },
+            label: function(item) {
+              return [
+                ' Cum. rain: '    + item.parsed.x.toFixed(1) + ' mm',
+                ' Cum. seepage: ' + item.parsed.y.toLocaleString() + ' m³'
+              ];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          grid: GRID,
+          ticks: TICK,
+          title: {
+            display: true,
+            text: 'Cumulative Rainfall (mm)',
+            color: '#4493f8',
+            font: { size: 9 }
+          }
+        },
+        y: {
+          position: 'left',
+          grid: GRID,
+          ticks: TICK,
+          title: {
+            display: true,
+            text: 'Cumulative Seepage (m³)',
+            color: '#f0a500',
+            font: { size: 9 }
+          }
+        }
+      }
+    }
+  });
+}
 // ── HELPERS ───────────────────────────────────────────────────────────────────────
 function setStatus(text, cls) {
   var el = document.getElementById('status-badge');
