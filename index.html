@@ -292,7 +292,7 @@
   <!-- Chart 4: Double-mass -->
   <div class="chart-panel wide">
     <div class="chart-title">Double-Mass: Cumulative Rainfall vs Cumulative Seepage</div>
-    <div class="chart-sub">Slope break indicates change in liner efficiency · x-axis aligned to weekly totalizer dates</div>
+    <div class="chart-sub">Cumulative seepage (m³, left) · Cumulative rainfall (mm, right) · Divergence indicates liner efficiency change</div>
     <div class="chart-wrap"><canvas id="chart-dm"></canvas></div>
   </div>
 </div>
@@ -776,65 +776,59 @@ function renderWLChart() {
   var tot = DATA.totalizer;
   var rf  = DATA.rainfall;
 
-  // Build cumulative rainfall indexed by date for fast lookup
-  var rfByDate = {};
+  // Build cumulative rainfall as a time series (daily)
   var cumRain = 0;
-  rf.forEach(function(r) {
+  var cumRainfallSeries = rf.map(function(r) {
     cumRain += r.rainfall_mm;
-    rfByDate[r.date] = cumRain;
+    return { x: r.date, y: Math.round(cumRain * 10) / 10 };
   });
 
-  // For each totalizer week-end date, find nearest cumulative rainfall
-  // We snap to the closest available rainfall date within ±3 days
-  function nearestCumRain(dateStr) {
-    if (rfByDate[dateStr] !== undefined) return rfByDate[dateStr];
-    var d = new Date(dateStr);
-    for (var delta = 1; delta <= 3; delta++) {
-      var dp = new Date(d); dp.setDate(d.getDate() + delta);
-      var dm = new Date(d); dm.setDate(d.getDate() - delta);
-      var sp = dp.toISOString().slice(0,10);
-      var sm = dm.toISOString().slice(0,10);
-      if (rfByDate[sp] !== undefined) return rfByDate[sp];
-      if (rfByDate[sm] !== undefined) return rfByDate[sm];
-    }
-    return null;
-  }
-
-  // Build scatter points: x = cumulative rainfall (mm), y = cumulative seepage (m³)
-  var points = [];
-  tot.forEach(function(t) {
-    var cr = nearestCumRain(t.date);
-    if (cr !== null && t.totalizer_m3 !== null) {
-      points.push({ x: cr, y: t.totalizer_m3, date: t.date });
-    }
+  // Cumulative seepage series — totalizer is already cumulative
+  var cumSeepageSeries = tot.map(function(t) {
+    return { x: t.date, y: t.totalizer_m3 };
   });
-
-  if (!points.length) {
-    console.warn('Double-mass: no overlapping data points');
-    return;
-  }
 
   var ctx = document.getElementById('chart-dm').getContext('2d');
   charts['dm'] = new Chart(ctx, {
-    type: 'scatter',
     data: {
-      datasets: [{
-        label: 'Cum. Seepage vs Cum. Rainfall',
-        data: points,
-        borderColor: '#f0a500',
-        backgroundColor: 'rgba(240,165,0,0.7)',
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        showLine: true,
-        borderWidth: 1.5,
-        tension: 0,
-        animation: false
-      }]
+      datasets: [
+        {
+          type: 'line',
+          label: 'Cumulative Seepage (m³)',
+          data: cumSeepageSeries,
+          borderColor: '#f0a500',
+          backgroundColor: 'rgba(240,165,0,0.08)',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#f0a500',
+          fill: true,
+          tension: 0.2,
+          spanGaps: true,
+          animation: false,
+          yAxisID: 'y',
+          order: 1
+        },
+        {
+          type: 'line',
+          label: 'Cumulative Rainfall (mm)',
+          data: cumRainfallSeries,
+          borderColor: '#4493f8',
+          backgroundColor: 'rgba(68,147,248,0.06)',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.1,
+          spanGaps: true,
+          animation: false,
+          yAxisID: 'y2',
+          order: 2
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      interaction: { mode: 'nearest', intersect: false },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { position: 'top' },
         tooltip: {
@@ -844,32 +838,25 @@ function renderWLChart() {
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
-            title: function(items) {
-              return points[items[0].dataIndex]
-                ? 'Week: ' + points[items[0].dataIndex].date
-                : '';
-            },
             label: function(item) {
-              return [
-                ' Cum. rain: '    + item.parsed.x.toFixed(1) + ' mm',
-                ' Cum. seepage: ' + item.parsed.y.toLocaleString() + ' m³'
-              ];
+              var v = item.parsed.y;
+              if (item.datasetIndex === 0)
+                return ' Cum. seepage: ' + v.toLocaleString() + ' m³';
+              return ' Cum. rainfall: ' + v.toFixed(1) + ' mm';
             }
           }
         }
       },
       scales: {
         x: {
-          type: 'linear',
-          position: 'bottom',
+          type: 'time',
+          time: {
+            unit: 'month',
+            tooltipFormat: 'yyyy-MM-dd',
+            displayFormats: { month: 'MMM yyyy' }
+          },
           grid: GRID,
-          ticks: TICK,
-          title: {
-            display: true,
-            text: 'Cumulative Rainfall (mm)',
-            color: '#4493f8',
-            font: { size: 9 }
-          }
+          ticks: { ...TICK, maxRotation: 0 }
         },
         y: {
           position: 'left',
@@ -877,10 +864,22 @@ function renderWLChart() {
           ticks: TICK,
           title: {
             display: true,
-            text: 'Cumulative Seepage (m³)',
+            text: 'Cum. Seepage (m³)',
             color: '#f0a500',
             font: { size: 9 }
           }
+        },
+        y2: {
+          position: 'right',
+          grid: { display: false },
+          ticks: TICK,
+          title: {
+            display: true,
+            text: 'Cum. Rainfall (mm)',
+            color: '#4493f8',
+            font: { size: 9 }
+          },
+          min: 0
         }
       }
     }
