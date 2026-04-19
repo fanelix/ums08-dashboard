@@ -12,16 +12,16 @@
 <style>
   /* ── DESIGN: Industrial-technical. Dark slate base, amber accent. Monospace data. ── */
   :root{
-    --bg:       #0d1117;
-    --surface:  #161b22;
-    --border:   #30363d;
-    --text:     #e6edf3;
-    --muted:    #8b949e;
-    --amber:    #f0a500;
-    --amber-dim:#7a5400;
-    --blue:     #4493f8;
-    --green:    #3fb950;
-    --red:      #f85149;
+    --bg:       #ffffff;
+    --surface:  #f6f8fa;
+    --border:   #d0d7de;
+    --text:     #1f2328;
+    --muted:    #57606a;
+    --amber:    #b35c00;
+    --amber-dim:#f0a500;
+    --blue:     #0969da;
+    --green:    #1a7f37;
+    --red:      #cf222e;
     --font-ui:  'IBM Plex Sans', sans-serif;
     --font-mono:'IBM Plex Mono', monospace;
   }
@@ -188,7 +188,7 @@
   .spinner{
     width:32px;height:32px;
     border:2px solid var(--border);
-    border-top-color:var(--amber);
+    border-top-color:var(--amber-dim);
     border-radius:50%;
     animation:spin .8s linear infinite;
   }
@@ -343,15 +343,15 @@ function destroyChart(id) {
 }
 
 // ── CHART.JS DEFAULTS ────────────────────────────────────────────────────────────
-Chart.defaults.color = '#8b949e';
+Chart.defaults.color = '#57606a';
 Chart.defaults.font.family = "'IBM Plex Mono', monospace";
 Chart.defaults.font.size = 10;
 Chart.defaults.plugins.legend.display = true;
 Chart.defaults.plugins.legend.labels.boxWidth = 10;
 Chart.defaults.plugins.legend.labels.padding = 16;
 
-var GRID = { color: 'rgba(48,54,61,0.8)', lineWidth: 1 };
-var TICK = { color: '#8b949e', font: { size: 9 } };
+var GRID = { color: 'rgba(208,215,222,0.8)', lineWidth: 1 };
+var TICK = { color: '#57606a', font: { size: 9 } };
 
 // ── DATA STATE ───────────────────────────────────────────────────────────────────
 var DATA = { rainfall: [], totalizer: [], waterLevel: [] };
@@ -574,8 +574,8 @@ function renderTotalizerChart() {
       plugins: {
         legend: { position: 'top' },
         tooltip: {
-          backgroundColor: '#161b22',
-          borderColor: '#30363d', borderWidth: 1,
+          backgroundColor: '#ffffff',
+          borderColor: '#d0d7de', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -664,7 +664,7 @@ function renderFlowChart() {
       plugins: {
         legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
-          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+          backgroundColor: '#ffffff', borderColor: '#d0d7de', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -708,11 +708,11 @@ function renderWLChart() {
           type: 'line',
           label: 'Water Level (m RL)',
           data: wl.map(r => ({ x: r.date, y: r.water_level_m_rl })),
-          borderColor: '#4493f8',
-          backgroundColor: 'rgba(68,147,248,0.08)',
+          borderColor: '#a855f7',
+          backgroundColor: 'rgba(168,85,247,0.08)',
           borderWidth: 2,
           pointRadius: 5,
-          pointBackgroundColor: '#4493f8',
+          pointBackgroundColor: '#a855f7',
           fill: true,
           tension: 0.3,
           spanGaps: true,
@@ -741,7 +741,7 @@ function renderWLChart() {
       plugins: {
         legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
-          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+          backgroundColor: '#ffffff', borderColor: '#d0d7de', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -761,7 +761,7 @@ function renderWLChart() {
         },
         y: {
           position: 'left', grid: GRID, ticks: TICK,
-          title: { display: true, text: 'm RL', color: '#4493f8', font: { size: 9 } }
+          title: { display: true, text: 'm RL', color: '#a855f7', font: { size: 9 } }
         },
         y2: {
           position: 'right', grid: { display: false }, ticks: TICK, min: 0,
@@ -833,8 +833,8 @@ function renderDoublesMassChart() {
       plugins: {
         legend: { position: 'top' },
         tooltip: {
-          backgroundColor: '#161b22',
-          borderColor: '#30363d',
+          backgroundColor: '#ffffff',
+          borderColor: '#d0d7de',
           borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
