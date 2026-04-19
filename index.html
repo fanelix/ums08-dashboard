@@ -407,34 +407,54 @@ async function loadFromLocal() {
 }
 
 // ── CSV PARSERS ───────────────────────────────────────────────────────────────────
+// ── DATE NORMALIZER ──────────────────────────────────────────────────────────────
+// Google Sheets (Indonesian locale) exports dates as YYYY/MM/DD with slashes.
+// Normalize to ISO YYYY-MM-DD for consistent sorting and display.
+function normalizeDate(val) {
+  if (!val) return null;
+  var s = String(val).trim();
+  // Accept YYYY-MM-DD or YYYY/MM/DD
+  var m = s.match(/^(\d{4})[\/\-](\d{2})[\/\-](\d{2})$/);
+  if (!m) return null;
+  return m[1] + '-' + m[2] + '-' + m[3];
+}
+
+// ── NORMALIZE: strip BOM, trim all header keys ────────────────────────────────────
+function normalizeCsvHeaders(text) {
+  text = text.replace(/^\uFEFF/, ''); // strip UTF-8 BOM
+  var lines = text.split('\n');
+  if (!lines.length) return text;
+  lines[0] = lines[0].split(',').map(h => h.trim().toLowerCase()).join(',');
+  return lines.join('\n');
+}
+
 function parseCsvRainfall(text) {
+  text = normalizeCsvHeaders(text);
   var res = Papa.parse(text, { header: true, skipEmptyLines: true });
   return res.data
-    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
-    .map(r => ({ date: r.date.trim(), rainfall_mm: parseLocaleFloat(r.rainfall_mm) }))
-    .filter(r => r.rainfall_mm !== null);
+    .map(r => ({ date: normalizeDate(r.date), rainfall_mm: parseLocaleFloat(r.rainfall_mm) }))
+    .filter(r => r.date !== null && r.rainfall_mm !== null);
 }
 
 function parseCsvTotalizer(text) {
+  text = normalizeCsvHeaders(text);
   var res = Papa.parse(text, { header: true, skipEmptyLines: true });
   return res.data
-    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
     .map(r => ({
-      date: r.date.trim(),
+      date: normalizeDate(r.date),
       totalizer_m3: parseLocaleInt(r.totalizer_m3),
       flow_m3_per_week: parseLocaleInt(r.flow_m3_per_week)
     }))
-    .filter(r => r.totalizer_m3 !== null);
+    .filter(r => r.date !== null && r.totalizer_m3 !== null);
 }
 
 function parseCsvWaterLevel(text) {
+  text = normalizeCsvHeaders(text);
   var res = Papa.parse(text, { header: true, skipEmptyLines: true });
   return res.data
-    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
-    .map(r => ({ date: r.date.trim(), water_level_m_rl: parseLocaleFloat(r.water_level_m_rl) }))
-    .filter(r => r.water_level_m_rl !== null);
+    .map(r => ({ date: normalizeDate(r.date), water_level_m_rl: parseLocaleFloat(r.water_level_m_rl) }))
+    .filter(r => r.date !== null && r.water_level_m_rl !== null);
 }
-
 // ── CLIENT-SIDE VALIDATION ────────────────────────────────────────────────────────
 function validate() {
   var tot = DATA.totalizer;
