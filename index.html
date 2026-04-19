@@ -278,14 +278,14 @@
   <!-- Chart 2: Weekly flow rate -->
   <div class="chart-panel">
     <div class="chart-title">Weekly Flow Rate</div>
-    <div class="chart-sub">m³ per week from PLS collection sump</div>
+    <div class="chart-sub">m³/week (left axis) · Daily rainfall mm (right axis)</div>
     <div class="chart-wrap"><canvas id="chart-flow"></canvas></div>
   </div>
 
   <!-- Chart 3: Water level -->
   <div class="chart-panel">
     <div class="chart-title">Piezometric Water Level</div>
-    <div class="chart-sub">m above RL-34.313 datum · ad hoc readings</div>
+    <div class="chart-sub">m RL (left axis) · Daily rainfall mm (right axis) · ad hoc readings</div>
     <div class="chart-wrap"><canvas id="chart-wl"></canvas></div>
   </div>
 
@@ -615,46 +615,81 @@ function renderTotalizerChart() {
 function renderFlowChart() {
   destroyChart('flow');
   var tot = DATA.totalizer;
+  var rf  = DATA.rainfall;
+
   var flows = tot.map((t, i) => {
-    if (t.flow_m3_per_week !== null) return t.flow_m3_per_week;
-    if (i > 0) return t.totalizer_m3 - tot[i-1].totalizer_m3;
-    return null;
+    if (t.flow_m3_per_week !== null) return { x: t.date, y: t.flow_m3_per_week };
+    if (i > 0) return { x: t.date, y: t.totalizer_m3 - tot[i-1].totalizer_m3 };
+    return { x: t.date, y: null };
   });
 
   var ctx = document.getElementById('chart-flow').getContext('2d');
   charts['flow'] = new Chart(ctx, {
-    type: 'line',
     data: {
-      labels: tot.map(t => t.date),
-      datasets: [{
-        label: 'Weekly Flow (m³/week)',
-        data: flows,
-        borderColor: '#3fb950',
-        backgroundColor: 'rgba(63,185,80,0.08)',
-        borderWidth: 2,
-        pointRadius: 3,
-        pointBackgroundColor: '#3fb950',
-        fill: true,
-        tension: 0.2,
-        spanGaps: true,
-        animation: false
-      }]
+      datasets: [
+        {
+          type: 'line',
+          label: 'Weekly Flow (m³/week)',
+          data: flows,
+          borderColor: '#3fb950',
+          backgroundColor: 'rgba(63,185,80,0.08)',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#3fb950',
+          fill: true,
+          tension: 0.2,
+          spanGaps: true,
+          animation: false,
+          yAxisID: 'y',
+          order: 1
+        },
+        {
+          type: 'bar',
+          label: 'Daily Rainfall (mm)',
+          data: rf.map(r => ({ x: r.date, y: r.rainfall_mm })),
+          backgroundColor: 'rgba(68,147,248,0.35)',
+          borderColor: 'rgba(68,147,248,0.7)',
+          borderWidth: 1,
+          yAxisID: 'y2',
+          animation: false,
+          order: 2,
+          barPercentage: 1.0,
+          categoryPercentage: 1.0
+        }
+      ]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display: false },
+        legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
           backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
-          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
-          callbacks: { label: ctx => ' Flow: ' + (ctx.parsed.y || 0).toLocaleString() + ' m³/wk' }
+          bodyFont: { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: {
+            label: ctx => {
+              var v = ctx.parsed.y;
+              if (ctx.datasetIndex === 0) return ' Flow: ' + (v || 0).toLocaleString() + ' m³/wk';
+              return ' Daily rain: ' + v.toFixed(1) + ' mm';
+            }
+          }
         }
       },
       scales: {
-        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 10, maxRotation: 0 } },
-        y: { grid: GRID, ticks: TICK, min: 0,
-             title: { display: true, text: 'm³/week', color: '#3fb950', font: { size: 9 } } }
+        x: {
+          type: 'time',
+          time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd', displayFormats: { month: 'MMM yyyy' } },
+          grid: GRID, ticks: { ...TICK, maxRotation: 0 }
+        },
+        y: {
+          position: 'left', grid: GRID, ticks: TICK, min: 0,
+          title: { display: true, text: 'm³/week', color: '#3fb950', font: { size: 9 } }
+        },
+        y2: {
+          position: 'right', grid: { display: false }, ticks: TICK, min: 0,
+          title: { display: true, text: 'mm/day', color: '#4493f8', font: { size: 9 } }
+        }
       }
     }
   });
@@ -663,105 +698,79 @@ function renderFlowChart() {
 function renderWLChart() {
   destroyChart('wl');
   var wl = DATA.waterLevel;
+  var rf = DATA.rainfall;
+
   var ctx = document.getElementById('chart-wl').getContext('2d');
   charts['wl'] = new Chart(ctx, {
-    type: 'line',
     data: {
-      labels: wl.map(r => r.date),
-      datasets: [{
-        label: 'Water Level (m RL)',
-        data: wl.map(r => r.water_level_m_rl),
-        borderColor: '#4493f8',
-        backgroundColor: 'rgba(68,147,248,0.08)',
-        borderWidth: 2,
-        pointRadius: 5,
-        pointBackgroundColor: '#4493f8',
-        fill: true,
-        tension: 0.3,
-        spanGaps: true,
-        animation: false
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
-          titleFont: { family: "'IBM Plex Mono'", size: 10 },
-          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
-          callbacks: { label: ctx => ' WL: ' + ctx.parsed.y.toFixed(3) + ' m RL' }
+      datasets: [
+        {
+          type: 'line',
+          label: 'Water Level (m RL)',
+          data: wl.map(r => ({ x: r.date, y: r.water_level_m_rl })),
+          borderColor: '#4493f8',
+          backgroundColor: 'rgba(68,147,248,0.08)',
+          borderWidth: 2,
+          pointRadius: 5,
+          pointBackgroundColor: '#4493f8',
+          fill: true,
+          tension: 0.3,
+          spanGaps: true,
+          animation: false,
+          yAxisID: 'y',
+          order: 1
+        },
+        {
+          type: 'bar',
+          label: 'Daily Rainfall (mm)',
+          data: rf.map(r => ({ x: r.date, y: r.rainfall_mm })),
+          backgroundColor: 'rgba(68,147,248,0.25)',
+          borderColor: 'rgba(68,147,248,0.5)',
+          borderWidth: 1,
+          yAxisID: 'y2',
+          animation: false,
+          order: 2,
+          barPercentage: 1.0,
+          categoryPercentage: 1.0
         }
-      },
-      scales: {
-        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 8, maxRotation: 30 } },
-        y: { grid: GRID, ticks: TICK,
-             title: { display: true, text: 'm RL', color: '#4493f8', font: { size: 9 } } }
-      }
-    }
-  });
-}
-
-function renderDoublesMassChart() {
-  destroyChart('dm');
-  var tot = DATA.totalizer;
-  var rf  = DATA.rainfall;
-
-  // For each totalizer date, compute cumulative rainfall up to that date
-  var rfSorted = [...rf].sort((a,b) => a.date.localeCompare(b.date));
-  var cumRf = 0, rfIdx = 0;
-  var points = [];
-  tot.forEach(t => {
-    while (rfIdx < rfSorted.length && rfSorted[rfIdx].date <= t.date) {
-      cumRf += rfSorted[rfIdx].rainfall_mm;
-      rfIdx++;
-    }
-    points.push({ x: Math.round(cumRf), y: t.totalizer_m3, date: t.date });
-  });
-
-  var ctx = document.getElementById('chart-dm').getContext('2d');
-  charts['dm'] = new Chart(ctx, {
-    type: 'scatter',
-    data: {
-      datasets: [{
-        label: 'Cum. Rainfall vs Cum. Totalizer',
-        data: points,
-        borderColor: '#f0a500',
-        backgroundColor: 'rgba(240,165,0,0.6)',
-        pointRadius: 4,
-        showLine: true,
-        borderWidth: 1.5,
-        tension: 0,
-        animation: false
-      }]
+      ]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display: false },
+        legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
           backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
-          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
-            title: items => points[items[0].dataIndex]?.date || '',
-            label: ctx => [
-              ' Cum. rain: ' + ctx.parsed.x.toLocaleString() + ' mm',
-              ' Cum. seep: ' + ctx.parsed.y.toLocaleString() + ' m³'
-            ]
+            label: ctx => {
+              var v = ctx.parsed.y;
+              if (ctx.datasetIndex === 0) return ' WL: ' + v.toFixed(3) + ' m RL';
+              return ' Daily rain: ' + v.toFixed(1) + ' mm';
+            }
           }
         }
       },
       scales: {
-        x: { grid: GRID, ticks: TICK,
-             title: { display: true, text: 'Cumulative Rainfall (mm)', color: '#8b949e', font: { size: 9 } } },
-        y: { grid: GRID, ticks: TICK,
-             title: { display: true, text: 'Cumulative Seepage (m³)', color: '#8b949e', font: { size: 9 } } }
+        x: {
+          type: 'time',
+          time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd', displayFormats: { month: 'MMM yyyy' } },
+          grid: GRID, ticks: { ...TICK, maxRotation: 0 }
+        },
+        y: {
+          position: 'left', grid: GRID, ticks: TICK,
+          title: { display: true, text: 'm RL', color: '#4493f8', font: { size: 9 } }
+        },
+        y2: {
+          position: 'right', grid: { display: false }, ticks: TICK, min: 0,
+          title: { display: true, text: 'mm/day', color: '#4493f8', font: { size: 9 } }
+        }
       }
     }
   });
 }
-
 // ── HELPERS ───────────────────────────────────────────────────────────────────────
 function setStatus(text, cls) {
   var el = document.getElementById('status-badge');
