@@ -218,6 +218,99 @@
   }
   footer a{color:var(--amber);text-decoration:none}
   footer a:hover{text-decoration:underline}
+
+  /* ── DATE RANGE CONTROLS ── */
+  .date-controls{
+    border-bottom:1px solid var(--border);
+    background:var(--surface);
+    padding:10px 32px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .date-controls-label{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .date-input-group{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .date-input-group label{
+    font-family:var(--font-mono);
+    font-size:10px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .date-input-group input[type="date"]{
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:4px 8px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    background:var(--bg);
+    color:var(--text);
+    cursor:pointer;
+    outline:none;
+    transition:border-color .2s;
+  }
+  .date-input-group input[type="date"]:focus{
+    border-color:var(--amber);
+  }
+  .preset-group{
+    display:flex;
+    gap:4px;
+    margin-left:4px;
+  }
+  .preset-btn{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.05em;
+    padding:4px 10px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    background:none;
+    color:var(--muted);
+    cursor:pointer;
+    transition:border-color .15s, color .15s, background .15s;
+    white-space:nowrap;
+  }
+  .preset-btn:hover{
+    border-color:var(--amber);
+    color:var(--amber);
+  }
+  .preset-btn.active{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:#fff;
+    font-weight:600;
+  }
+  .date-apply-btn{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.08em;
+    padding:4px 14px;
+    border:1px solid var(--amber);
+    border-radius:4px;
+    background:var(--amber);
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+    transition:opacity .2s;
+  }
+  .date-apply-btn:hover{ opacity:0.85; }
+  .date-sep{
+    color:var(--border);
+    font-size:16px;
+    line-height:1;
+    margin:0 2px;
+  }
 </style>
 </head>
 <body>
@@ -264,6 +357,27 @@
     <div class="stat-label">Data Coverage</div>
     <div class="stat-value" id="stat-rows">—</div>
     <div class="stat-sub" id="stat-rows-sub">rainfall · totalizer · WL</div>
+  </div>
+</div>
+
+<div class="date-controls">
+  <span class="date-controls-label">Time Range</span>
+  <div class="date-input-group">
+    <label for="date-start">FROM</label>
+    <input type="date" id="date-start"/>
+  </div>
+  <span class="date-sep">→</span>
+  <div class="date-input-group">
+    <label for="date-end">TO</label>
+    <input type="date" id="date-end"/>
+  </div>
+  <button class="date-apply-btn" onclick="applyDateRange()">APPLY</button>
+  <div class="preset-group">
+    <button class="preset-btn" onclick="setPreset(30,'30D')">30D</button>
+    <button class="preset-btn" onclick="setPreset(90,'90D')">90D</button>
+    <button class="preset-btn" onclick="setPreset(180,'6M')">6M</button>
+    <button class="preset-btn" onclick="setPreset(365,'1Y')">1Y</button>
+    <button class="preset-btn active" id="preset-ALL" onclick="setPreset(null,'ALL')">ALL</button>
   </div>
 </div>
 
@@ -356,6 +470,87 @@ var TICK = { color: '#57606a', font: { size: 9 } };
 // ── DATA STATE ───────────────────────────────────────────────────────────────────
 var DATA = { rainfall: [], totalizer: [], waterLevel: [] };
 
+// ── DATE RANGE STATE ─────────────────────────────────────────────────────────────
+var RANGE = { start: null, end: null };
+
+function setPreset(days, key) {
+  // Mark active button
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('preset-' + key).classList.add('active');
+
+  if (days === null) {
+    // ALL — clear range
+    RANGE.start = null;
+    RANGE.end   = null;
+    document.getElementById('date-start').value = '';
+    document.getElementById('date-end').value   = '';
+  } else {
+    var end   = new Date();
+    var start = new Date();
+    start.setDate(end.getDate() - days);
+    RANGE.start = start.toISOString().slice(0,10);
+    RANGE.end   = end.toISOString().slice(0,10);
+    document.getElementById('date-start').value = RANGE.start;
+    document.getElementById('date-end').value   = RANGE.end;
+  }
+  renderCharts();
+}
+
+function applyDateRange() {
+  var s = document.getElementById('date-start').value;
+  var e = document.getElementById('date-end').value;
+  RANGE.start = s || null;
+  RANGE.end   = e || null;
+  // Clear preset active state when custom range applied
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  renderCharts();
+}
+
+// Filter helpers — return data sliced to current RANGE
+function filteredRainfall() {
+  return DATA.rainfall.filter(function(r) {
+    if (RANGE.start && r.date < RANGE.start) return false;
+    if (RANGE.end   && r.date > RANGE.end)   return false;
+    return true;
+  });
+}
+function filteredTotalizer() {
+  return DATA.totalizer.filter(function(r) {
+    if (RANGE.start && r.date < RANGE.start) return false;
+    if (RANGE.end   && r.date > RANGE.end)   return false;
+    return true;
+  });
+}
+function filteredWaterLevel() {
+  return DATA.waterLevel.filter(function(r) {
+    if (RANGE.start && r.date < RANGE.start) return false;
+    if (RANGE.end   && r.date > RANGE.end)   return false;
+    return true;
+  });
+}
+
+// X-axis min/max from current range (pass to Chart.js scales)
+function xScaleRange() {
+  return {
+    min: RANGE.start || undefined,
+    max: RANGE.end   || undefined
+  };
+}
+
+// Initialise date inputs to full data extent after load
+function initDateInputs() {
+  var allDates = DATA.rainfall.map(r => r.date)
+    .concat(DATA.totalizer.map(r => r.date))
+    .concat(DATA.waterLevel.map(r => r.date))
+    .filter(Boolean)
+    .sort();
+  if (!allDates.length) return;
+  document.getElementById('date-start').min = allDates[0];
+  document.getElementById('date-start').max = allDates[allDates.length-1];
+  document.getElementById('date-end').min   = allDates[0];
+  document.getElementById('date-end').max   = allDates[allDates.length-1];
+}
+
 // ── LOAD & ORCHESTRATE ───────────────────────────────────────────────────────────
 async function loadAll() {
   var btn = document.getElementById('refresh-btn');
@@ -384,6 +579,7 @@ async function loadAll() {
 
   validate();
   renderStats();
+  initDateInputs();
   renderCharts();
   document.getElementById('last-updated').textContent =
     'UPDATED ' + new Date().toISOString().slice(0,16).replace('T',' ') + ' UTC';
@@ -530,8 +726,9 @@ function renderCharts() {
 
 function renderTotalizerChart() {
   destroyChart('totalizer');
-  var tot = DATA.totalizer;
-  var rf  = DATA.rainfall;
+  var tot = filteredTotalizer();
+  var rf  = filteredRainfall();
+  var xr  = xScaleRange();
 
   var ctx = document.getElementById('chart-totalizer').getContext('2d');
   charts['totalizer'] = new Chart(ctx, {
@@ -590,6 +787,8 @@ function renderTotalizerChart() {
       scales: {
         x: {
           type: 'time',
+          min: xr.min,
+          max: xr.max,
           time: {
             unit: 'month',
             tooltipFormat: 'yyyy-MM-dd',
@@ -614,8 +813,9 @@ function renderTotalizerChart() {
 
 function renderFlowChart() {
   destroyChart('flow');
-  var tot = DATA.totalizer;
-  var rf  = DATA.rainfall;
+  var tot = filteredTotalizer();
+  var rf  = filteredRainfall();
+  var xr  = xScaleRange();
 
   var flows = tot.map((t, i) => {
     if (t.flow_m3_per_week !== null) return { x: t.date, y: t.flow_m3_per_week };
@@ -679,6 +879,8 @@ function renderFlowChart() {
       scales: {
         x: {
           type: 'time',
+          min: xr.min,
+          max: xr.max,
           time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd', displayFormats: { month: 'MMM yyyy' } },
           grid: GRID, ticks: { ...TICK, maxRotation: 0 }
         },
@@ -697,8 +899,9 @@ function renderFlowChart() {
 
 function renderWLChart() {
   destroyChart('wl');
-  var wl = DATA.waterLevel;
-  var rf = DATA.rainfall;
+  var wl = filteredWaterLevel();
+  var rf = filteredRainfall();
+  var xr = xScaleRange();
 
   var ctx = document.getElementById('chart-wl').getContext('2d');
   charts['wl'] = new Chart(ctx, {
@@ -756,6 +959,8 @@ function renderWLChart() {
       scales: {
         x: {
           type: 'time',
+          min: xr.min,
+          max: xr.max,
           time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd', displayFormats: { month: 'MMM yyyy' } },
           grid: GRID, ticks: { ...TICK, maxRotation: 0 }
         },
@@ -773,8 +978,11 @@ function renderWLChart() {
 }
 function renderDoublesMassChart() {
   destroyChart('dm');
+  // NOTE: cumulative series always computed from FULL dataset so values are
+  // hydrologically correct. Display window is controlled by x-axis min/max.
   var tot = DATA.totalizer;
   var rf  = DATA.rainfall;
+  var xr  = xScaleRange();
 
   // Build cumulative rainfall as a daily time series
   var cumRain = 0;
@@ -851,6 +1059,8 @@ function renderDoublesMassChart() {
       scales: {
         x: {
           type: 'time',
+          min: xr.min,
+          max: xr.max,
           time: {
             unit: 'month',
             tooltipFormat: 'yyyy-MM-dd',
