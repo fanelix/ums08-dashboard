@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UMS-08 Data Entry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0d1117;--surface:#161b22;--border:#30363d;
+    --text:#e6edf3;--muted:#8b949e;
+    --amber:#f0a500;--blue:#4493f8;--green:#3fb950;--red:#f85149;
+    --font-ui:'IBM Plex Sans',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-ui);
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    padding:32px 16px;}
+
+  header{width:100%;max-width:480px;margin-bottom:24px;}
+  .site-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+  h1{font-size:18px;font-weight:600;color:var(--text);}
+
+  /* Tab selector */
+  .tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;
+    overflow:hidden;width:100%;max-width:480px;margin-bottom:20px;}
+  .tab-btn{flex:1;padding:10px;background:var(--surface);border:none;
+    color:var(--muted);font-family:var(--font-mono);font-size:11px;
+    letter-spacing:.05em;cursor:pointer;transition:all .2s;
+    border-right:1px solid var(--border);}
+  .tab-btn:last-child{border-right:none;}
+  .tab-btn.active{background:var(--amber);color:#000;font-weight:600;}
+
+  /* Card */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;
+    padding:24px;width:100%;max-width:480px;}
+
+  .field{margin-bottom:16px;}
+  label{display:block;font-family:var(--font-mono);font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  input{width:100%;background:var(--bg);border:1px solid var(--border);
+    border-radius:4px;color:var(--text);font-family:var(--font-mono);font-size:14px;
+    padding:10px 12px;transition:border-color .2s;outline:none;}
+  input:focus{border-color:var(--amber);}
+  input::placeholder{color:var(--border);}
+  .hint{font-size:11px;color:var(--muted);margin-top:4px;}
+
+  /* Submit */
+  #submit-btn{width:100%;padding:12px;background:var(--amber);color:#000;
+    border:none;border-radius:4px;font-family:var(--font-mono);font-size:12px;
+    font-weight:600;letter-spacing:.08em;cursor:pointer;margin-top:8px;
+    transition:opacity .2s;}
+  #submit-btn:hover{opacity:.85;}
+  #submit-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  /* Toast / result */
+  #result{margin-top:16px;padding:12px 16px;border-radius:4px;
+    font-family:var(--font-mono);font-size:12px;display:none;line-height:1.6;}
+  #result.ok{background:rgba(63,185,80,.12);border:1px solid var(--green);color:var(--green);}
+  #result.err{background:rgba(248,81,73,.1);border:1px solid var(--red);color:var(--red);}
+
+  /* Recent entries */
+  .recent-title{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:24px 0 10px;}
+  .recent-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11px;}
+  .recent-table th{text-align:left;padding:6px 8px;color:var(--muted);
+    border-bottom:1px solid var(--border);font-weight:400;}
+  .recent-table td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,.5);color:var(--text);}
+  .recent-table tr:first-child td{color:var(--amber);}
+  .recent-empty{font-family:var(--font-mono);font-size:11px;color:var(--muted);
+    padding:12px 0;text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-label">PT Bumi Suksesindo · UMS-08 PLS</div>
+  <h1>Data Entry Form</h1>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('rainfall')">RAINFALL</button>
+  <button class="tab-btn" onclick="switchTab('totalizer')">TOTALIZER</button>
+  <button class="tab-btn" onclick="switchTab('waterLevel')">WATER LEVEL</button>
+</div>
+
+<div class="card">
+  <!-- DATE (shared) -->
+  <div class="field">
+    <label>Date</label>
+    <input type="date" id="f-date" max="2099-12-31"/>
+    <div class="hint">YYYY-MM-DD — do not enter future dates</div>
+  </div>
+
+  <!-- RAINFALL fields -->
+  <div id="fields-rainfall">
+    <div class="field">
+      <label>Daily Rainfall (mm)</label>
+      <input type="number" id="f-rainfall" step="0.1" min="0" max="500" placeholder="e.g. 12.5"/>
+      <div class="hint">24-hour total · range 0–500 mm</div>
+    </div>
+  </div>
+
+  <!-- TOTALIZER fields -->
+  <div id="fields-totalizer" style="display:none">
+    <div class="field">
+      <label>Totalizer Reading (m³)</label>
+      <input type="number" id="f-totalizer" step="1" min="0" placeholder="e.g. 72500"/>
+      <div class="hint">Cumulative volume — must be ≥ last reading</div>
+    </div>
+    <div class="field">
+      <label>Weekly Flow (m³/week) <span style="color:var(--border)">— optional</span></label>
+      <input type="number" id="f-flow" step="1" min="0" placeholder="leave blank to auto-derive"/>
+    </div>
+  </div>
+
+  <!-- WATER LEVEL fields -->
+  <div id="fields-waterLevel" style="display:none">
+    <div class="field">
+      <label>Water Level (m RL)</label>
+      <input type="number" id="f-wl" step="0.001" min="0" max="50" placeholder="e.g. 19.500"/>
+      <div class="hint">Above RL-34.313 datum · range 0–50 m</div>
+    </div>
+  </div>
+
+  <button id="submit-btn" onclick="submitForm()">SUBMIT</button>
+  <div id="result"></div>
+</div>
+
+<!-- Recent entries -->
+<div style="width:100%;max-width:480px;">
+  <div class="recent-title">Recent Entries (<span id="recent-tab-label">rainfall_daily</span>)</div>
+  <div id="recent-container"><div class="recent-empty">Loading…</div></div>
+</div>
+
+<script>
+var SCRIPT_URL = ''; // ← paste your Apps Script Web App URL here after deployment
+
+var currentTab = 'rainfall';
+
+var TAB_LABELS = {
+  rainfall:   'rainfall_daily',
+  totalizer:  'totalizer_weekly',
+  waterLevel: 'water_level'
+};
+
+function switchTab(tab) {
+  currentTab = tab;
+  // Update buttons
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['rainfall','totalizer','waterLevel'][i] === tab);
+  });
+  // Toggle field groups
+  ['rainfall','totalizer','waterLevel'].forEach(t => {
+    document.getElementById('fields-' + t).style.display = (t === tab) ? '' : 'none';
+  });
+  document.getElementById('recent-tab-label').textContent = TAB_LABELS[tab];
+  document.getElementById('result').style.display = 'none';
+  loadRecent();
+}
+
+function getPayload() {
+  var dateVal = document.getElementById('f-date').value;
+  var payload = { type: currentTab, date: dateVal };
+  if (currentTab === 'rainfall') {
+    payload.rainfall_mm = document.getElementById('f-rainfall').value;
+  } else if (currentTab === 'totalizer') {
+    payload.totalizer_m3 = document.getElementById('f-totalizer').value;
+    var flow = document.getElementById('f-flow').value;
+    if (flow) payload.flow_m3_per_week = flow;
+  } else {
+    payload.water_level_m_rl = document.getElementById('f-wl').value;
+  }
+  return payload;
+}
+
+async function submitForm() {
+  if (!SCRIPT_URL) {
+    showResult(false, ['Apps Script URL not configured. Paste your deployed web-app URL into SCRIPT_URL in form.html.']);
+    return;
+  }
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'SUBMITTING…';
+
+  try {
+    var res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(getPayload())
+    });
+    var data = await res.json();
+    if (data.ok) {
+      showResult(true, ['Row saved: ' + JSON.stringify(data.row)]);
+      clearInputs();
+      loadRecent();
+    } else {
+      showResult(false, data.errors);
+    }
+  } catch(e) {
+    showResult(false, ['Network error: ' + e.message]);
+  }
+  btn.disabled = false;
+  btn.textContent = 'SUBMIT';
+}
+
+function showResult(ok, lines) {
+  var el = document.getElementById('result');
+  el.className = ok ? 'ok' : 'err';
+  el.innerHTML = lines.map(l => '→ ' + l).join('<br/>');
+  el.style.display = '';
+}
+
+function clearInputs() {
+  ['f-rainfall','f-totalizer','f-flow','f-wl'].forEach(id => {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+async function loadRecent() {
+  var container = document.getElementById('recent-container');
+  container.innerHTML = '<div class="recent-empty">Loading…</div>';
+  if (!SCRIPT_URL) {
+    container.innerHTML = '<div class="recent-empty">Configure SCRIPT_URL to see recent entries.</div>';
+    return;
+  }
+  try {
+    var url = SCRIPT_URL + '?action=getRecent&tab=' + currentTab + '&n=5';
+    var res = await fetch(url);
+    var data = await res.json();
+    if (!data.rows || !data.rows.length) {
+      container.innerHTML = '<div class="recent-empty">No entries yet.</div>';
+      return;
+    }
+    var html = '<table class="recent-table"><thead><tr>';
+    data.headers.forEach(h => { html += '<th>' + h + '</th>'; });
+    html += '</tr></thead><tbody>';
+    data.rows.forEach(row => {
+      html += '<tr>';
+      row.forEach(cell => { html += '<td>' + (cell !== '' ? cell : '—') + '</td>'; });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="recent-empty">Could not load recent entries.</div>';
+  }
+}
+
+// Init: set today's date, load recent
+window.addEventListener('load', () => {
+  document.getElementById('f-date').value = new Date().toISOString().slice(0,10);
+  loadRecent();
+});
+</script>
+</body>
+</html>

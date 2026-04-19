@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UMS-08 PLS Monitoring — Tujuh Bukit</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ── DESIGN: Industrial-technical. Dark slate base, amber accent. Monospace data. ── */
+  :root{
+    --bg:       #0d1117;
+    --surface:  #161b22;
+    --border:   #30363d;
+    --text:     #e6edf3;
+    --muted:    #8b949e;
+    --amber:    #f0a500;
+    --amber-dim:#7a5400;
+    --blue:     #4493f8;
+    --green:    #3fb950;
+    --red:      #f85149;
+    --font-ui:  'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-ui);
+    font-size:14px;
+    line-height:1.6;
+    min-height:100vh;
+  }
+
+  /* ── HEADER ── */
+  header{
+    border-bottom:1px solid var(--border);
+    padding:20px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    background:var(--surface);
+  }
+  .header-left{}
+  .site-label{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:4px;
+  }
+  h1{
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    color:var(--text);
+  }
+  .header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  #status-badge{
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:4px;
+    border:1px solid var(--border);
+    color:var(--muted);
+  }
+  #status-badge.live{border-color:var(--green);color:var(--green)}
+  #status-badge.fallback{border-color:var(--amber);color:var(--amber)}
+  #status-badge.error{border-color:var(--red);color:var(--red)}
+  #refresh-btn{
+    background:none;
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:5px 14px;
+    border-radius:4px;
+    cursor:pointer;
+    transition:border-color .2s,color .2s;
+    letter-spacing:0.05em;
+  }
+  #refresh-btn:hover{border-color:var(--amber);color:var(--amber)}
+  #refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+  #last-updated{
+    font-family:var(--font-mono);
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.05em;
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1px;
+    background:var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .stat-card{
+    background:var(--surface);
+    padding:18px 24px;
+  }
+  .stat-label{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .stat-value{
+    font-family:var(--font-mono);
+    font-size:22px;
+    font-weight:600;
+    color:var(--text);
+    line-height:1;
+  }
+  .stat-unit{
+    font-size:12px;
+    color:var(--muted);
+    margin-left:4px;
+    font-weight:400;
+  }
+  .stat-sub{
+    font-family:var(--font-mono);
+    font-size:10px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+
+  /* ── CHART GRID ── */
+  .charts-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--border);
+    padding-bottom:1px;
+  }
+  @media(max-width:860px){.charts-grid{grid-template-columns:1fr}}
+  .chart-panel{
+    background:var(--surface);
+    padding:24px;
+  }
+  .chart-panel.wide{grid-column:1/-1}
+  .chart-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:4px;
+  }
+  .chart-sub{
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .chart-wrap{
+    position:relative;
+    height:260px;
+  }
+  .chart-panel.wide .chart-wrap{height:220px}
+
+  /* ── LOADING / ERROR ── */
+  #loading-overlay{
+    position:fixed;inset:0;
+    background:var(--bg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    gap:16px;
+    transition:opacity .5s;
+  }
+  #loading-overlay.hidden{opacity:0;pointer-events:none}
+  .spinner{
+    width:32px;height:32px;
+    border:2px solid var(--border);
+    border-top-color:var(--amber);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-text{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.1em;
+  }
+
+  /* ── FOOTER ── */
+  footer{
+    border-top:1px solid var(--border);
+    padding:16px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  footer span{
+    font-family:var(--font-mono);
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+  }
+  footer a{color:var(--amber);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">FETCHING DATA…</div>
+</div>
+
+<header>
+  <div class="header-left">
+    <div class="site-label">PT Bumi Suksesindo · Tujuh Bukit · PLS Monitoring</div>
+    <h1>UMS-08 Totalizer Dashboard</h1>
+  </div>
+  <div class="header-right">
+    <span id="last-updated">—</span>
+    <span id="status-badge">LOADING</span>
+    <button id="refresh-btn" onclick="loadAll()">↻ REFRESH</button>
+  </div>
+</header>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-label">Cumulative Seepage</div>
+    <div class="stat-value" id="stat-total">—<span class="stat-unit">m³</span></div>
+    <div class="stat-sub" id="stat-total-sub">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Last Weekly Flow</div>
+    <div class="stat-value" id="stat-flow">—<span class="stat-unit">m³/wk</span></div>
+    <div class="stat-sub" id="stat-flow-sub">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Water Level (RL)</div>
+    <div class="stat-value" id="stat-wl">—<span class="stat-unit">m</span></div>
+    <div class="stat-sub" id="stat-wl-sub">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">30-day Rainfall</div>
+    <div class="stat-value" id="stat-rain">—<span class="stat-unit">mm</span></div>
+    <div class="stat-sub" id="stat-rain-sub">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Data Coverage</div>
+    <div class="stat-value" id="stat-rows">—</div>
+    <div class="stat-sub" id="stat-rows-sub">rainfall · totalizer · WL</div>
+  </div>
+</div>
+
+<div class="charts-grid">
+  <!-- Chart 1: Totalizer + daily rainfall -->
+  <div class="chart-panel wide">
+    <div class="chart-title">Cumulative Seepage Volume &amp; Daily Rainfall</div>
+    <div class="chart-sub">Totalizer (m³) on left axis · Rainfall (mm/day) on right axis · Weekly readings</div>
+    <div class="chart-wrap"><canvas id="chart-totalizer"></canvas></div>
+  </div>
+
+  <!-- Chart 2: Weekly flow rate -->
+  <div class="chart-panel">
+    <div class="chart-title">Weekly Flow Rate</div>
+    <div class="chart-sub">m³ per week from PLS collection sump</div>
+    <div class="chart-wrap"><canvas id="chart-flow"></canvas></div>
+  </div>
+
+  <!-- Chart 3: Water level -->
+  <div class="chart-panel">
+    <div class="chart-title">Piezometric Water Level</div>
+    <div class="chart-sub">m above RL-34.313 datum · ad hoc readings</div>
+    <div class="chart-wrap"><canvas id="chart-wl"></canvas></div>
+  </div>
+
+  <!-- Chart 4: Double-mass -->
+  <div class="chart-panel wide">
+    <div class="chart-title">Double-Mass: Cumulative Rainfall vs Cumulative Seepage</div>
+    <div class="chart-sub">Slope break indicates change in liner efficiency · x-axis aligned to weekly totalizer dates</div>
+    <div class="chart-wrap"><canvas id="chart-dm"></canvas></div>
+  </div>
+</div>
+
+<footer>
+  <span>UMS-08 PLS MONITORING · BSI TUJUH BUKIT</span>
+  <span>DATUM RL-34.313 m · <a href="FORM_URL_PLACEHOLDER" target="_blank">INPUT FORM ↗</a></span>
+</footer>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────────
+var CONFIG = {
+  DEFAULT_SOURCE: 'SHEET',   // 'SHEET' or 'LOCAL'
+  CSV_RAINFALL:   'https://docs.google.com/spreadsheets/d/e/2PACX-1vSrL_Wi4QwayzdccWnrjKeoJc44JrNOF-30xKGpeWpKoehx5sev_3aZ0FKqQ5cekqRzaWFcXrZTeNM1/pub?gid=1122200614&single=true&output=csv',
+  CSV_TOTALIZER:  'https://docs.google.com/spreadsheets/d/e/2PACX-1vSrL_Wi4QwayzdccWnrjKeoJc44JrNOF-30xKGpeWpKoehx5sev_3aZ0FKqQ5cekqRzaWFcXrZTeNM1/pub?gid=1846696595&single=true&output=csv',
+  CSV_WL:         'https://docs.google.com/spreadsheets/d/e/2PACX-1vSrL_Wi4QwayzdccWnrjKeoJc44JrNOF-30xKGpeWpKoehx5sev_3aZ0FKqQ5cekqRzaWFcXrZTeNM1/pub?gid=933601780&single=true&output=csv',
+  LOCAL_FALLBACK: 'data.json'
+};
+
+// ── LOCALE-AWARE CSV PARSER ──────────────────────────────────────────────────────
+// Google Sheets (Indonesian locale) exports decimals with comma: "13,3"
+// PapaParse sees this as a string; we convert quoted comma-decimals to float.
+function parseLocaleFloat(val) {
+  if (val === null || val === undefined || val === '') return null;
+  var s = String(val).trim().replace(/^"|"$/g, '');
+  // If value looks like "N,N" (Indonesian decimal), replace comma with dot
+  if (/^\d+,\d+$/.test(s)) s = s.replace(',', '.');
+  var f = parseFloat(s);
+  return isNaN(f) ? null : f;
+}
+
+function parseLocaleInt(val) {
+  if (val === null || val === undefined || val === '') return null;
+  var s = String(val).trim().replace(/^"|"$/g, '').replace(/\./g,'').replace(',','.');
+  var i = parseInt(s, 10);
+  return isNaN(i) ? null : i;
+}
+
+// ── CHART INSTANCES ──────────────────────────────────────────────────────────────
+var charts = {};
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+// ── CHART.JS DEFAULTS ────────────────────────────────────────────────────────────
+Chart.defaults.color = '#8b949e';
+Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+Chart.defaults.font.size = 10;
+Chart.defaults.plugins.legend.display = true;
+Chart.defaults.plugins.legend.labels.boxWidth = 10;
+Chart.defaults.plugins.legend.labels.padding = 16;
+
+var GRID = { color: 'rgba(48,54,61,0.8)', lineWidth: 1 };
+var TICK = { color: '#8b949e', font: { size: 9 } };
+
+// ── DATA STATE ───────────────────────────────────────────────────────────────────
+var DATA = { rainfall: [], totalizer: [], waterLevel: [] };
+
+// ── LOAD & ORCHESTRATE ───────────────────────────────────────────────────────────
+async function loadAll() {
+  var btn = document.getElementById('refresh-btn');
+  btn.disabled = true;
+  setStatus('LOADING', '');
+  showLoading(true);
+
+  try {
+    if (CONFIG.DEFAULT_SOURCE === 'SHEET') {
+      await loadFromSheet();
+    } else {
+      await loadFromLocal();
+    }
+  } catch(e) {
+    console.warn('Sheet load failed, falling back to local:', e);
+    try {
+      await loadFromLocal();
+      setStatus('FALLBACK', 'fallback');
+    } catch(e2) {
+      setStatus('ERROR', 'error');
+      showLoading(false);
+      btn.disabled = false;
+      return;
+    }
+  }
+
+  validate();
+  renderStats();
+  renderCharts();
+  document.getElementById('last-updated').textContent =
+    'UPDATED ' + new Date().toISOString().slice(0,16).replace('T',' ') + ' UTC';
+  showLoading(false);
+  btn.disabled = false;
+}
+
+async function loadFromSheet() {
+  var [rfText, totText, wlText] = await Promise.all([
+    fetch(CONFIG.CSV_RAINFALL).then(r => { if(!r.ok) throw new Error(r.status); return r.text(); }),
+    fetch(CONFIG.CSV_TOTALIZER).then(r => { if(!r.ok) throw new Error(r.status); return r.text(); }),
+    fetch(CONFIG.CSV_WL).then(r => { if(!r.ok) throw new Error(r.status); return r.text(); })
+  ]);
+
+  DATA.rainfall   = parseCsvRainfall(rfText);
+  DATA.totalizer  = parseCsvTotalizer(totText);
+  DATA.waterLevel = parseCsvWaterLevel(wlText);
+  setStatus('LIVE · SHEET', 'live');
+}
+
+async function loadFromLocal() {
+  var res  = await fetch(CONFIG.LOCAL_FALLBACK);
+  var json = await res.json();
+  DATA.rainfall   = json.rainfall_daily.map(r => ({ date: r.date, rainfall_mm: r.rainfall_mm }));
+  DATA.totalizer  = json.totalizer_weekly.map(r => ({ date: r.date, totalizer_m3: r.totalizer_m3, flow_m3_per_week: r.flow_m3_per_week }));
+  DATA.waterLevel = json.water_level.map(r => ({ date: r.date, water_level_m_rl: r.water_level_m_rl }));
+}
+
+// ── CSV PARSERS ───────────────────────────────────────────────────────────────────
+function parseCsvRainfall(text) {
+  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+  return res.data
+    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
+    .map(r => ({ date: r.date.trim(), rainfall_mm: parseLocaleFloat(r.rainfall_mm) }))
+    .filter(r => r.rainfall_mm !== null);
+}
+
+function parseCsvTotalizer(text) {
+  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+  return res.data
+    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
+    .map(r => ({
+      date: r.date.trim(),
+      totalizer_m3: parseLocaleInt(r.totalizer_m3),
+      flow_m3_per_week: parseLocaleInt(r.flow_m3_per_week)
+    }))
+    .filter(r => r.totalizer_m3 !== null);
+}
+
+function parseCsvWaterLevel(text) {
+  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+  return res.data
+    .filter(r => r.date && /^\d{4}-\d{2}-\d{2}$/.test(r.date.trim()))
+    .map(r => ({ date: r.date.trim(), water_level_m_rl: parseLocaleFloat(r.water_level_m_rl) }))
+    .filter(r => r.water_level_m_rl !== null);
+}
+
+// ── CLIENT-SIDE VALIDATION ────────────────────────────────────────────────────────
+function validate() {
+  var tot = DATA.totalizer;
+  for (var i = 1; i < tot.length; i++) {
+    if (tot[i].totalizer_m3 < tot[i-1].totalizer_m3) {
+      console.warn('Monotonic violation at', tot[i].date,
+        tot[i].totalizer_m3, '<', tot[i-1].totalizer_m3);
+    }
+  }
+}
+
+// ── STATS ROW ─────────────────────────────────────────────────────────────────────
+function renderStats() {
+  var tot = DATA.totalizer, rf = DATA.rainfall, wl = DATA.waterLevel;
+
+  // Cumulative seepage
+  if (tot.length) {
+    var last = tot[tot.length-1];
+    document.getElementById('stat-total').innerHTML =
+      last.totalizer_m3.toLocaleString() + '<span class="stat-unit">m³</span>';
+    document.getElementById('stat-total-sub').textContent = 'as of ' + last.date;
+  }
+
+  // Last weekly flow
+  if (tot.length) {
+    var lf = tot[tot.length-1];
+    var fv = lf.flow_m3_per_week !== null ? lf.flow_m3_per_week :
+             (tot.length > 1 ? lf.totalizer_m3 - tot[tot.length-2].totalizer_m3 : null);
+    if (fv !== null) {
+      document.getElementById('stat-flow').innerHTML =
+        fv.toLocaleString() + '<span class="stat-unit">m³/wk</span>';
+      document.getElementById('stat-flow-sub').textContent = 'week ending ' + lf.date;
+    }
+  }
+
+  // Latest water level
+  if (wl.length) {
+    var lwl = wl[wl.length-1];
+    document.getElementById('stat-wl').innerHTML =
+      lwl.water_level_m_rl.toFixed(3) + '<span class="stat-unit">m</span>';
+    document.getElementById('stat-wl-sub').textContent = 'read ' + lwl.date;
+  }
+
+  // 30-day rainfall
+  if (rf.length) {
+    var cutoff = new Date(rf[rf.length-1].date);
+    cutoff.setDate(cutoff.getDate() - 30);
+    var sum30 = rf.filter(r => new Date(r.date) >= cutoff)
+                  .reduce((s,r) => s + r.rainfall_mm, 0);
+    document.getElementById('stat-rain').innerHTML =
+      sum30.toFixed(1) + '<span class="stat-unit">mm</span>';
+    document.getElementById('stat-rain-sub').textContent = 'trailing 30 days';
+  }
+
+  // Row counts
+  document.getElementById('stat-rows').textContent =
+    rf.length + ' / ' + tot.length + ' / ' + wl.length;
+}
+
+// ── CHARTS ────────────────────────────────────────────────────────────────────────
+function renderCharts() {
+  renderTotalizerChart();
+  renderFlowChart();
+  renderWLChart();
+  renderDoublesMassChart();
+}
+
+function renderTotalizerChart() {
+  destroyChart('totalizer');
+  var tot = DATA.totalizer;
+  var rf  = DATA.rainfall;
+
+  // Map rainfall to totalizer dates (nearest date within ±4 days, else sum week)
+  var rfMap = {};
+  rf.forEach(r => { rfMap[r.date] = r.rainfall_mm; });
+
+  // For each totalizer date, sum rainfall in the preceding 7 days
+  var weeklyRf = tot.map(t => {
+    var end   = new Date(t.date);
+    var start = new Date(t.date); start.setDate(start.getDate() - 6);
+    var sum = 0;
+    rf.forEach(r => {
+      var d = new Date(r.date);
+      if (d >= start && d <= end) sum += r.rainfall_mm;
+    });
+    return sum;
+  });
+
+  var ctx = document.getElementById('chart-totalizer').getContext('2d');
+  charts['totalizer'] = new Chart(ctx, {
+    data: {
+      labels: tot.map(t => t.date),
+      datasets: [
+        {
+          type: 'line',
+          label: 'Totalizer (m³)',
+          data: tot.map(t => t.totalizer_m3),
+          borderColor: '#f0a500',
+          backgroundColor: 'rgba(240,165,0,0.08)',
+          borderWidth: 2,
+          pointRadius: 2,
+          pointBackgroundColor: '#f0a500',
+          fill: true,
+          tension: 0.2,
+          yAxisID: 'y',
+          spanGaps: true,
+          animation: false,
+          order: 1
+        },
+        {
+          type: 'bar',
+          label: '7-day Rainfall (mm)',
+          data: weeklyRf,
+          backgroundColor: 'rgba(68,147,248,0.35)',
+          borderColor: 'rgba(68,147,248,0.7)',
+          borderWidth: 1,
+          yAxisID: 'y2',
+          animation: false,
+          order: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top' },
+        tooltip: {
+          backgroundColor: '#161b22',
+          borderColor: '#30363d', borderWidth: 1,
+          titleFont: { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: {
+            label: ctx => {
+              var v = ctx.parsed.y;
+              if (ctx.datasetIndex === 0) return ' Totalizer: ' + v.toLocaleString() + ' m³';
+              return ' 7-day rain: ' + v.toFixed(1) + ' mm';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 12, maxRotation: 0 } },
+        y: {
+          position: 'left', grid: GRID, ticks: TICK,
+          title: { display: true, text: 'm³', color: '#f0a500', font: { size: 9 } }
+        },
+        y2: {
+          position: 'right', grid: { display: false }, ticks: TICK,
+          reverse: true,
+          title: { display: true, text: 'mm', color: '#4493f8', font: { size: 9 } },
+          min: 0
+        }
+      }
+    }
+  });
+}
+
+function renderFlowChart() {
+  destroyChart('flow');
+  var tot = DATA.totalizer;
+  var flows = tot.map((t, i) => {
+    if (t.flow_m3_per_week !== null) return t.flow_m3_per_week;
+    if (i > 0) return t.totalizer_m3 - tot[i-1].totalizer_m3;
+    return null;
+  });
+
+  var ctx = document.getElementById('chart-flow').getContext('2d');
+  charts['flow'] = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: tot.map(t => t.date),
+      datasets: [{
+        label: 'Weekly Flow (m³/week)',
+        data: flows,
+        borderColor: '#3fb950',
+        backgroundColor: 'rgba(63,185,80,0.08)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: '#3fb950',
+        fill: true,
+        tension: 0.2,
+        spanGaps: true,
+        animation: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+          titleFont: { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: { label: ctx => ' Flow: ' + (ctx.parsed.y || 0).toLocaleString() + ' m³/wk' }
+        }
+      },
+      scales: {
+        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 10, maxRotation: 0 } },
+        y: { grid: GRID, ticks: TICK, min: 0,
+             title: { display: true, text: 'm³/week', color: '#3fb950', font: { size: 9 } } }
+      }
+    }
+  });
+}
+
+function renderWLChart() {
+  destroyChart('wl');
+  var wl = DATA.waterLevel;
+  var ctx = document.getElementById('chart-wl').getContext('2d');
+  charts['wl'] = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: wl.map(r => r.date),
+      datasets: [{
+        label: 'Water Level (m RL)',
+        data: wl.map(r => r.water_level_m_rl),
+        borderColor: '#4493f8',
+        backgroundColor: 'rgba(68,147,248,0.08)',
+        borderWidth: 2,
+        pointRadius: 5,
+        pointBackgroundColor: '#4493f8',
+        fill: true,
+        tension: 0.3,
+        spanGaps: true,
+        animation: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+          titleFont: { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: { label: ctx => ' WL: ' + ctx.parsed.y.toFixed(3) + ' m RL' }
+        }
+      },
+      scales: {
+        x: { grid: GRID, ticks: { ...TICK, maxTicksLimit: 8, maxRotation: 30 } },
+        y: { grid: GRID, ticks: TICK,
+             title: { display: true, text: 'm RL', color: '#4493f8', font: { size: 9 } } }
+      }
+    }
+  });
+}
+
+function renderDoublesMassChart() {
+  destroyChart('dm');
+  var tot = DATA.totalizer;
+  var rf  = DATA.rainfall;
+
+  // For each totalizer date, compute cumulative rainfall up to that date
+  var rfSorted = [...rf].sort((a,b) => a.date.localeCompare(b.date));
+  var cumRf = 0, rfIdx = 0;
+  var points = [];
+  tot.forEach(t => {
+    while (rfIdx < rfSorted.length && rfSorted[rfIdx].date <= t.date) {
+      cumRf += rfSorted[rfIdx].rainfall_mm;
+      rfIdx++;
+    }
+    points.push({ x: Math.round(cumRf), y: t.totalizer_m3, date: t.date });
+  });
+
+  var ctx = document.getElementById('chart-dm').getContext('2d');
+  charts['dm'] = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Cum. Rainfall vs Cum. Totalizer',
+        data: points,
+        borderColor: '#f0a500',
+        backgroundColor: 'rgba(240,165,0,0.6)',
+        pointRadius: 4,
+        showLine: true,
+        borderWidth: 1.5,
+        tension: 0,
+        animation: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+          titleFont: { family: "'IBM Plex Mono'", size: 10 },
+          bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
+          callbacks: {
+            title: items => points[items[0].dataIndex]?.date || '',
+            label: ctx => [
+              ' Cum. rain: ' + ctx.parsed.x.toLocaleString() + ' mm',
+              ' Cum. seep: ' + ctx.parsed.y.toLocaleString() + ' m³'
+            ]
+          }
+        }
+      },
+      scales: {
+        x: { grid: GRID, ticks: TICK,
+             title: { display: true, text: 'Cumulative Rainfall (mm)', color: '#8b949e', font: { size: 9 } } },
+        y: { grid: GRID, ticks: TICK,
+             title: { display: true, text: 'Cumulative Seepage (m³)', color: '#8b949e', font: { size: 9 } } }
+      }
+    }
+  });
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────────
+function setStatus(text, cls) {
+  var el = document.getElementById('status-badge');
+  el.textContent = text;
+  el.className = cls;
+}
+
+function showLoading(show) {
+  var el = document.getElementById('loading-overlay');
+  if (show) el.classList.remove('hidden');
+  else el.classList.add('hidden');
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────────
+window.addEventListener('load', loadAll);
+</script>
+</body>
+</html>
