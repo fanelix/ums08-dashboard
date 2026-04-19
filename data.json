@@ -1,2243 +1,2238 @@
 {
   "_meta": {
-    "generated": "2025-02-01",
-    "description": "UMS-08 PLS Monitoring \u2014 canonical data snapshot",
+    "generated": "2026-04-19",
+    "source": "Weekly_UD-UMS_130426.xlsx",
+    "description": "UMS-08 PLS Monitoring \u2014 real data extracted from BSI weekly report",
     "schema_version": "1.0",
     "tabs": {
       "rainfall_daily": {
-        "rows": 397,
-        "unit": "mm",
-        "cadence": "daily"
+        "rows": 397
       },
       "totalizer_weekly": {
-        "rows": 105,
-        "unit": "m3",
-        "cadence": "weekly"
+        "rows": 105
       },
       "water_level": {
-        "rows": 25,
-        "unit": "m_rl",
-        "cadence": "ad_hoc"
+        "rows": 25
       }
     }
   },
   "rainfall_daily": [
     {
-      "date": "2024-01-01",
-      "rainfall_mm": 0.3
-    },
-    {
-      "date": "2024-01-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-03",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-04",
-      "rainfall_mm": 13.3
-    },
-    {
-      "date": "2024-01-05",
-      "rainfall_mm": 1.1
-    },
-    {
-      "date": "2024-01-06",
-      "rainfall_mm": 0.4
-    },
-    {
-      "date": "2024-01-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-08",
-      "rainfall_mm": 0.3
-    },
-    {
-      "date": "2024-01-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-10",
-      "rainfall_mm": 9.3
-    },
-    {
-      "date": "2024-01-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-12",
-      "rainfall_mm": 19.6
-    },
-    {
-      "date": "2024-01-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-14",
-      "rainfall_mm": 14.1
-    },
-    {
-      "date": "2024-01-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-17",
-      "rainfall_mm": 4.8
-    },
-    {
-      "date": "2024-01-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-20",
-      "rainfall_mm": 10.9
-    },
-    {
-      "date": "2024-01-21",
-      "rainfall_mm": 15.4
-    },
-    {
-      "date": "2024-01-22",
-      "rainfall_mm": 42.7
-    },
-    {
-      "date": "2024-01-23",
-      "rainfall_mm": 9.5
-    },
-    {
-      "date": "2024-01-24",
-      "rainfall_mm": 11.4
-    },
-    {
-      "date": "2024-01-25",
-      "rainfall_mm": 10.2
-    },
-    {
-      "date": "2024-01-26",
-      "rainfall_mm": 0.6
-    },
-    {
-      "date": "2024-01-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-30",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-01-31",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-02",
-      "rainfall_mm": 5.1
-    },
-    {
-      "date": "2024-02-03",
-      "rainfall_mm": 2.7
-    },
-    {
-      "date": "2024-02-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-05",
-      "rainfall_mm": 11.8
-    },
-    {
-      "date": "2024-02-06",
-      "rainfall_mm": 2.1
-    },
-    {
-      "date": "2024-02-07",
-      "rainfall_mm": 2.0
-    },
-    {
-      "date": "2024-02-08",
-      "rainfall_mm": 51.4
-    },
-    {
-      "date": "2024-02-09",
-      "rainfall_mm": 9.2
-    },
-    {
-      "date": "2024-02-10",
-      "rainfall_mm": 20.9
-    },
-    {
-      "date": "2024-02-11",
-      "rainfall_mm": 2.9
-    },
-    {
-      "date": "2024-02-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-14",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-16",
-      "rainfall_mm": 23.6
-    },
-    {
-      "date": "2024-02-17",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-18",
-      "rainfall_mm": 5.7
-    },
-    {
-      "date": "2024-02-19",
-      "rainfall_mm": 6.9
-    },
-    {
-      "date": "2024-02-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-22",
-      "rainfall_mm": 3.4
-    },
-    {
-      "date": "2024-02-23",
-      "rainfall_mm": 25.7
-    },
-    {
-      "date": "2024-02-24",
-      "rainfall_mm": 2.8
-    },
-    {
-      "date": "2024-02-25",
-      "rainfall_mm": 8.0
-    },
-    {
-      "date": "2024-02-26",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-02-29",
-      "rainfall_mm": 17.7
-    },
-    {
-      "date": "2024-03-01",
-      "rainfall_mm": 0.6
-    },
-    {
-      "date": "2024-03-02",
-      "rainfall_mm": 51.3
-    },
-    {
-      "date": "2024-03-03",
-      "rainfall_mm": 32.7
-    },
-    {
-      "date": "2024-03-04",
-      "rainfall_mm": 0.1
-    },
-    {
-      "date": "2024-03-05",
-      "rainfall_mm": 10.6
-    },
-    {
-      "date": "2024-03-06",
-      "rainfall_mm": 2.9
-    },
-    {
-      "date": "2024-03-07",
-      "rainfall_mm": 1.1
-    },
-    {
-      "date": "2024-03-08",
-      "rainfall_mm": 5.6
-    },
-    {
-      "date": "2024-03-09",
-      "rainfall_mm": 19.3
-    },
-    {
-      "date": "2024-03-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-11",
-      "rainfall_mm": 1.8
-    },
-    {
-      "date": "2024-03-12",
-      "rainfall_mm": 18.9
-    },
-    {
-      "date": "2024-03-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-14",
-      "rainfall_mm": 8.7
-    },
-    {
-      "date": "2024-03-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-16",
-      "rainfall_mm": 7.2
-    },
-    {
-      "date": "2024-03-17",
-      "rainfall_mm": 7.0
-    },
-    {
-      "date": "2024-03-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-21",
-      "rainfall_mm": 19.5
-    },
-    {
-      "date": "2024-03-22",
-      "rainfall_mm": 3.4
-    },
-    {
-      "date": "2024-03-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-24",
-      "rainfall_mm": 27.1
-    },
-    {
-      "date": "2024-03-25",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-26",
-      "rainfall_mm": 0.7
-    },
-    {
-      "date": "2024-03-27",
-      "rainfall_mm": 13.4
-    },
-    {
-      "date": "2024-03-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-29",
-      "rainfall_mm": 7.4
-    },
-    {
-      "date": "2024-03-30",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-03-31",
-      "rainfall_mm": 5.1
-    },
-    {
-      "date": "2024-04-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-03",
-      "rainfall_mm": 2.6
-    },
-    {
-      "date": "2024-04-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-05",
-      "rainfall_mm": 12.0
-    },
-    {
-      "date": "2024-04-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-14",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-17",
-      "rainfall_mm": 22.4
-    },
-    {
-      "date": "2024-04-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-20",
-      "rainfall_mm": 2.8
-    },
-    {
-      "date": "2024-04-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-22",
-      "rainfall_mm": 9.7
-    },
-    {
-      "date": "2024-04-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-24",
-      "rainfall_mm": 18.8
-    },
-    {
-      "date": "2024-04-25",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-26",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-04-30",
-      "rainfall_mm": 12.8
-    },
-    {
-      "date": "2024-05-01",
-      "rainfall_mm": 0.6
-    },
-    {
-      "date": "2024-05-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-03",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-04",
-      "rainfall_mm": 1.6
-    },
-    {
-      "date": "2024-05-05",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-10",
-      "rainfall_mm": 3.3
-    },
-    {
-      "date": "2024-05-11",
-      "rainfall_mm": 4.6
-    },
-    {
-      "date": "2024-05-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-13",
-      "rainfall_mm": 10.3
-    },
-    {
-      "date": "2024-05-14",
-      "rainfall_mm": 14.9
-    },
-    {
-      "date": "2024-05-15",
-      "rainfall_mm": 1.0
-    },
-    {
-      "date": "2024-05-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-17",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-21",
-      "rainfall_mm": 1.8
-    },
-    {
-      "date": "2024-05-22",
-      "rainfall_mm": 3.5
-    },
-    {
-      "date": "2024-05-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-24",
-      "rainfall_mm": 30.8
-    },
-    {
-      "date": "2024-05-25",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-26",
-      "rainfall_mm": 1.0
-    },
-    {
-      "date": "2024-05-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-28",
-      "rainfall_mm": 4.9
-    },
-    {
-      "date": "2024-05-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-05-30",
-      "rainfall_mm": 0.3
-    },
-    {
-      "date": "2024-05-31",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-02",
-      "rainfall_mm": 0.5
-    },
-    {
-      "date": "2024-06-03",
-      "rainfall_mm": 0.2
-    },
-    {
-      "date": "2024-06-04",
+      "date": "2025-03-17",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-06-05",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-06",
-      "rainfall_mm": 0.8
-    },
-    {
-      "date": "2024-06-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-08",
-      "rainfall_mm": 0.8
-    },
-    {
-      "date": "2024-06-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-14",
-      "rainfall_mm": 0.7
-    },
-    {
-      "date": "2024-06-15",
-      "rainfall_mm": 0.8
-    },
-    {
-      "date": "2024-06-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-17",
-      "rainfall_mm": 1.0
-    },
-    {
-      "date": "2024-06-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-19",
-      "rainfall_mm": 0.2
-    },
-    {
-      "date": "2024-06-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-21",
-      "rainfall_mm": 15.8
-    },
-    {
-      "date": "2024-06-22",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-24",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-25",
-      "rainfall_mm": 6.1
-    },
-    {
-      "date": "2024-06-26",
-      "rainfall_mm": 1.3
-    },
-    {
-      "date": "2024-06-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-28",
-      "rainfall_mm": 3.5
-    },
-    {
-      "date": "2024-06-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-06-30",
-      "rainfall_mm": 3.0
-    },
-    {
-      "date": "2024-07-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-02",
-      "rainfall_mm": 0.7
-    },
-    {
-      "date": "2024-07-03",
-      "rainfall_mm": 5.3
-    },
-    {
-      "date": "2024-07-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-05",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-10",
-      "rainfall_mm": 0.4
-    },
-    {
-      "date": "2024-07-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-14",
-      "rainfall_mm": 3.6
-    },
-    {
-      "date": "2024-07-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-17",
-      "rainfall_mm": 0.0
+      "date": "2025-03-18",
+      "rainfall_mm": 22.8
     },
     {
-      "date": "2024-07-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-19",
-      "rainfall_mm": 1.9
-    },
-    {
-      "date": "2024-07-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-21",
-      "rainfall_mm": 1.5
-    },
-    {
-      "date": "2024-07-22",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-24",
-      "rainfall_mm": 0.0
+      "date": "2025-03-19",
+      "rainfall_mm": 57.9
     },
     {
-      "date": "2024-07-25",
+      "date": "2025-03-20",
       "rainfall_mm": 4.5
     },
     {
-      "date": "2024-07-26",
-      "rainfall_mm": 0.0
+      "date": "2025-03-21",
+      "rainfall_mm": 2.4
     },
     {
-      "date": "2024-07-27",
+      "date": "2025-03-22",
+      "rainfall_mm": 17.1
+    },
+    {
+      "date": "2025-03-23",
       "rainfall_mm": 1.7
     },
     {
-      "date": "2024-07-28",
+      "date": "2025-03-24",
+      "rainfall_mm": 2.5
+    },
+    {
+      "date": "2025-03-25",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-07-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-30",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-07-31",
-      "rainfall_mm": 3.0
-    },
-    {
-      "date": "2024-08-01",
-      "rainfall_mm": 3.3
-    },
-    {
-      "date": "2024-08-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-03",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-05",
-      "rainfall_mm": 3.1
-    },
-    {
-      "date": "2024-08-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-09",
-      "rainfall_mm": 2.9
-    },
-    {
-      "date": "2024-08-10",
-      "rainfall_mm": 2.4
-    },
-    {
-      "date": "2024-08-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-12",
-      "rainfall_mm": 0.6
-    },
-    {
-      "date": "2024-08-13",
-      "rainfall_mm": 2.3
-    },
-    {
-      "date": "2024-08-14",
-      "rainfall_mm": 2.4
-    },
-    {
-      "date": "2024-08-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-16",
-      "rainfall_mm": 0.2
-    },
-    {
-      "date": "2024-08-17",
-      "rainfall_mm": 2.8
-    },
-    {
-      "date": "2024-08-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-19",
-      "rainfall_mm": 0.9
-    },
-    {
-      "date": "2024-08-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-21",
-      "rainfall_mm": 0.4
-    },
-    {
-      "date": "2024-08-22",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-24",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-25",
-      "rainfall_mm": 4.9
-    },
-    {
-      "date": "2024-08-26",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-08-29",
+      "date": "2025-03-26",
       "rainfall_mm": 1.1
     },
     {
-      "date": "2024-08-30",
-      "rainfall_mm": 0.2
-    },
-    {
-      "date": "2024-08-31",
-      "rainfall_mm": 0.3
-    },
-    {
-      "date": "2024-09-01",
-      "rainfall_mm": 0.6
-    },
-    {
-      "date": "2024-09-02",
+      "date": "2025-03-27",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-09-03",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-04",
-      "rainfall_mm": 0.7
-    },
-    {
-      "date": "2024-09-05",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-11",
-      "rainfall_mm": 1.5
-    },
-    {
-      "date": "2024-09-12",
-      "rainfall_mm": 2.6
-    },
-    {
-      "date": "2024-09-13",
-      "rainfall_mm": 0.9
-    },
-    {
-      "date": "2024-09-14",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-15",
-      "rainfall_mm": 0.8
-    },
-    {
-      "date": "2024-09-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-17",
-      "rainfall_mm": 2.4
-    },
-    {
-      "date": "2024-09-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-22",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-24",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-25",
-      "rainfall_mm": 2.2
-    },
-    {
-      "date": "2024-09-26",
-      "rainfall_mm": 1.8
-    },
-    {
-      "date": "2024-09-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-09-30",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-03",
-      "rainfall_mm": 3.0
-    },
-    {
-      "date": "2024-10-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-05",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-07",
-      "rainfall_mm": 7.6
-    },
-    {
-      "date": "2024-10-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-09",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-12",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-13",
-      "rainfall_mm": 6.6
-    },
-    {
-      "date": "2024-10-14",
-      "rainfall_mm": 1.2
-    },
-    {
-      "date": "2024-10-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-17",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-19",
-      "rainfall_mm": 0.4
-    },
-    {
-      "date": "2024-10-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-22",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-23",
-      "rainfall_mm": 3.2
-    },
-    {
-      "date": "2024-10-24",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-25",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-26",
-      "rainfall_mm": 7.0
-    },
-    {
-      "date": "2024-10-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-10-30",
-      "rainfall_mm": 3.5
-    },
-    {
-      "date": "2024-10-31",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-01",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-02",
-      "rainfall_mm": 4.1
-    },
-    {
-      "date": "2024-11-03",
-      "rainfall_mm": 7.3
-    },
-    {
-      "date": "2024-11-04",
-      "rainfall_mm": 6.0
-    },
-    {
-      "date": "2024-11-05",
-      "rainfall_mm": 14.8
-    },
-    {
-      "date": "2024-11-06",
-      "rainfall_mm": 8.5
-    },
-    {
-      "date": "2024-11-07",
-      "rainfall_mm": 11.8
-    },
-    {
-      "date": "2024-11-08",
-      "rainfall_mm": 15.2
-    },
-    {
-      "date": "2024-11-09",
-      "rainfall_mm": 4.3
-    },
-    {
-      "date": "2024-11-10",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-12",
-      "rainfall_mm": 9.7
-    },
-    {
-      "date": "2024-11-13",
-      "rainfall_mm": 6.6
-    },
-    {
-      "date": "2024-11-14",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-15",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-17",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-18",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-11-19",
+      "date": "2025-03-28",
       "rainfall_mm": 1.0
     },
     {
-      "date": "2024-11-20",
+      "date": "2025-03-29",
+      "rainfall_mm": 19.0
+    },
+    {
+      "date": "2025-03-30",
+      "rainfall_mm": 2.5
+    },
+    {
+      "date": "2025-03-31",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-11-21",
-      "rainfall_mm": 8.2
-    },
-    {
-      "date": "2024-11-22",
+      "date": "2025-04-01",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-11-23",
-      "rainfall_mm": 5.2
-    },
-    {
-      "date": "2024-11-24",
-      "rainfall_mm": 1.5
-    },
-    {
-      "date": "2024-11-25",
-      "rainfall_mm": 15.7
-    },
-    {
-      "date": "2024-11-26",
-      "rainfall_mm": 7.9
-    },
-    {
-      "date": "2024-11-27",
-      "rainfall_mm": 9.7
-    },
-    {
-      "date": "2024-11-28",
+      "date": "2025-04-02",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-11-29",
-      "rainfall_mm": 9.3
-    },
-    {
-      "date": "2024-11-30",
-      "rainfall_mm": 20.4
-    },
-    {
-      "date": "2024-12-01",
-      "rainfall_mm": 14.1
-    },
-    {
-      "date": "2024-12-02",
-      "rainfall_mm": 9.5
-    },
-    {
-      "date": "2024-12-03",
+      "date": "2025-04-03",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-12-04",
+      "date": "2025-04-04",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-12-05",
-      "rainfall_mm": 0.3
-    },
-    {
-      "date": "2024-12-06",
+      "date": "2025-04-05",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-12-07",
-      "rainfall_mm": 5.3
-    },
-    {
-      "date": "2024-12-08",
+      "date": "2025-04-06",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-12-09",
-      "rainfall_mm": 1.4
+      "date": "2025-04-07",
+      "rainfall_mm": 4.5
     },
     {
-      "date": "2024-12-10",
-      "rainfall_mm": 0.3
+      "date": "2025-04-08",
+      "rainfall_mm": 4.0
     },
     {
-      "date": "2024-12-11",
-      "rainfall_mm": 8.5
-    },
-    {
-      "date": "2024-12-12",
+      "date": "2025-04-09",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2024-12-13",
-      "rainfall_mm": 1.5
+      "date": "2025-04-10",
+      "rainfall_mm": 14.0
     },
     {
-      "date": "2024-12-14",
-      "rainfall_mm": 0.5
+      "date": "2025-04-11",
+      "rainfall_mm": 10.0
     },
     {
-      "date": "2024-12-15",
-      "rainfall_mm": 2.4
-    },
-    {
-      "date": "2024-12-16",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-17",
-      "rainfall_mm": 4.9
-    },
-    {
-      "date": "2024-12-18",
-      "rainfall_mm": 18.3
-    },
-    {
-      "date": "2024-12-19",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-20",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-22",
-      "rainfall_mm": 95.3
-    },
-    {
-      "date": "2024-12-23",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-24",
-      "rainfall_mm": 15.6
-    },
-    {
-      "date": "2024-12-25",
-      "rainfall_mm": 14.4
-    },
-    {
-      "date": "2024-12-26",
-      "rainfall_mm": 2.3
-    },
-    {
-      "date": "2024-12-27",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-28",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-29",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2024-12-30",
-      "rainfall_mm": 8.5
-    },
-    {
-      "date": "2024-12-31",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-01",
-      "rainfall_mm": 17.2
-    },
-    {
-      "date": "2025-01-02",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-03",
-      "rainfall_mm": 16.3
-    },
-    {
-      "date": "2025-01-04",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-05",
-      "rainfall_mm": 39.4
-    },
-    {
-      "date": "2025-01-06",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-07",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-08",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-09",
-      "rainfall_mm": 37.4
-    },
-    {
-      "date": "2025-01-10",
-      "rainfall_mm": 14.8
-    },
-    {
-      "date": "2025-01-11",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-12",
-      "rainfall_mm": 11.6
-    },
-    {
-      "date": "2025-01-13",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-14",
-      "rainfall_mm": 22.4
-    },
-    {
-      "date": "2025-01-15",
-      "rainfall_mm": 1.5
-    },
-    {
-      "date": "2025-01-16",
-      "rainfall_mm": 18.0
-    },
-    {
-      "date": "2025-01-17",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-18",
-      "rainfall_mm": 5.5
-    },
-    {
-      "date": "2025-01-19",
-      "rainfall_mm": 4.9
-    },
-    {
-      "date": "2025-01-20",
-      "rainfall_mm": 20.4
-    },
-    {
-      "date": "2025-01-21",
-      "rainfall_mm": 0.0
-    },
-    {
-      "date": "2025-01-22",
-      "rainfall_mm": 11.9
-    },
-    {
-      "date": "2025-01-23",
+      "date": "2025-04-12",
       "rainfall_mm": 14.5
     },
     {
-      "date": "2025-01-24",
-      "rainfall_mm": 15.6
-    },
-    {
-      "date": "2025-01-25",
-      "rainfall_mm": 3.7
-    },
-    {
-      "date": "2025-01-26",
-      "rainfall_mm": 9.1
-    },
-    {
-      "date": "2025-01-27",
-      "rainfall_mm": 6.7
-    },
-    {
-      "date": "2025-01-28",
-      "rainfall_mm": 3.7
-    },
-    {
-      "date": "2025-01-29",
-      "rainfall_mm": 21.0
-    },
-    {
-      "date": "2025-01-30",
+      "date": "2025-04-13",
       "rainfall_mm": 0.0
     },
     {
-      "date": "2025-01-31",
+      "date": "2025-04-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-18",
+      "rainfall_mm": 13.7
+    },
+    {
+      "date": "2025-04-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-20",
+      "rainfall_mm": 12.0
+    },
+    {
+      "date": "2025-04-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-27",
+      "rainfall_mm": 11.1
+    },
+    {
+      "date": "2025-04-28",
+      "rainfall_mm": 3.1
+    },
+    {
+      "date": "2025-04-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-04-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-05",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-06",
+      "rainfall_mm": 4.0
+    },
+    {
+      "date": "2025-05-07",
+      "rainfall_mm": 1.5
+    },
+    {
+      "date": "2025-05-08",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-09",
+      "rainfall_mm": 13.0
+    },
+    {
+      "date": "2025-05-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-12",
+      "rainfall_mm": 0.5
+    },
+    {
+      "date": "2025-05-13",
+      "rainfall_mm": 53.6
+    },
+    {
+      "date": "2025-05-14",
+      "rainfall_mm": 13.5
+    },
+    {
+      "date": "2025-05-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-16",
+      "rainfall_mm": 17.0
+    },
+    {
+      "date": "2025-05-17",
+      "rainfall_mm": 10.5
+    },
+    {
+      "date": "2025-05-18",
+      "rainfall_mm": 17.0
+    },
+    {
+      "date": "2025-05-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-20",
+      "rainfall_mm": 17.0
+    },
+    {
+      "date": "2025-05-21",
+      "rainfall_mm": 2.5
+    },
+    {
+      "date": "2025-05-22",
+      "rainfall_mm": 1.7
+    },
+    {
+      "date": "2025-05-23",
+      "rainfall_mm": 8.5
+    },
+    {
+      "date": "2025-05-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-25",
+      "rainfall_mm": 36.0
+    },
+    {
+      "date": "2025-05-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-27",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-28",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-05-31",
+      "rainfall_mm": 2.0
+    },
+    {
+      "date": "2025-06-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-05",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-07",
+      "rainfall_mm": 11.8
+    },
+    {
+      "date": "2025-06-08",
+      "rainfall_mm": 16.2
+    },
+    {
+      "date": "2025-06-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-13",
+      "rainfall_mm": 5.1
+    },
+    {
+      "date": "2025-06-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-15",
+      "rainfall_mm": 12.4
+    },
+    {
+      "date": "2025-06-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-18",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-21",
+      "rainfall_mm": 7.6
+    },
+    {
+      "date": "2025-06-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-25",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-06-26",
+      "rainfall_mm": 40.8
+    },
+    {
+      "date": "2025-06-27",
+      "rainfall_mm": 0.8
+    },
+    {
+      "date": "2025-06-28",
+      "rainfall_mm": 3.7
+    },
+    {
+      "date": "2025-06-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-06-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-03",
+      "rainfall_mm": 4.5
+    },
+    {
+      "date": "2025-07-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-05",
+      "rainfall_mm": 0.6
+    },
+    {
+      "date": "2025-07-06",
+      "rainfall_mm": 13.5
+    },
+    {
+      "date": "2025-07-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-08",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-14",
+      "rainfall_mm": 3.7
+    },
+    {
+      "date": "2025-07-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-18",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-24",
+      "rainfall_mm": 5.5
+    },
+    {
+      "date": "2025-07-25",
+      "rainfall_mm": 24.6
+    },
+    {
+      "date": "2025-07-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-27",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-07-28",
+      "rainfall_mm": 2.6
+    },
+    {
+      "date": "2025-07-29",
+      "rainfall_mm": 36.2
+    },
+    {
+      "date": "2025-07-30",
+      "rainfall_mm": 34.4
+    },
+    {
+      "date": "2025-07-31",
+      "rainfall_mm": 8.3
+    },
+    {
+      "date": "2025-08-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-05",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-08",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-18",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-19",
+      "rainfall_mm": 15.9
+    },
+    {
+      "date": "2025-08-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-27",
+      "rainfall_mm": 79.4
+    },
+    {
+      "date": "2025-08-28",
+      "rainfall_mm": 40.3
+    },
+    {
+      "date": "2025-08-29",
+      "rainfall_mm": 3.4
+    },
+    {
+      "date": "2025-08-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-08-31",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-05",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-08",
+      "rainfall_mm": 1.6
+    },
+    {
+      "date": "2025-09-09",
+      "rainfall_mm": 68.0
+    },
+    {
+      "date": "2025-09-10",
+      "rainfall_mm": 81.6
+    },
+    {
+      "date": "2025-09-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-14",
+      "rainfall_mm": 1.5
+    },
+    {
+      "date": "2025-09-15",
+      "rainfall_mm": 8.9
+    },
+    {
+      "date": "2025-09-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-18",
+      "rainfall_mm": 4.6
+    },
+    {
+      "date": "2025-09-19",
+      "rainfall_mm": 2.0
+    },
+    {
+      "date": "2025-09-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-27",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-09-28",
+      "rainfall_mm": 0.5
+    },
+    {
+      "date": "2025-09-29",
+      "rainfall_mm": 48.5
+    },
+    {
+      "date": "2025-09-30",
+      "rainfall_mm": 7.3
+    },
+    {
+      "date": "2025-10-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-05",
+      "rainfall_mm": 1.3
+    },
+    {
+      "date": "2025-10-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-08",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-11",
+      "rainfall_mm": 15.1
+    },
+    {
+      "date": "2025-10-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-18",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-20",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-10-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-23",
+      "rainfall_mm": 0.8
+    },
+    {
+      "date": "2025-10-24",
+      "rainfall_mm": 5.1
+    },
+    {
+      "date": "2025-10-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-27",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-28",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-10-30",
+      "rainfall_mm": 27.7
+    },
+    {
+      "date": "2025-10-31",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-11-01",
+      "rainfall_mm": 4.7
+    },
+    {
+      "date": "2025-11-02",
+      "rainfall_mm": 16.0
+    },
+    {
+      "date": "2025-11-03",
+      "rainfall_mm": 20.0
+    },
+    {
+      "date": "2025-11-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-05",
+      "rainfall_mm": 44.0
+    },
+    {
+      "date": "2025-11-06",
+      "rainfall_mm": 10.8
+    },
+    {
+      "date": "2025-11-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-08",
+      "rainfall_mm": 22.2
+    },
+    {
+      "date": "2025-11-09",
+      "rainfall_mm": 17.7
+    },
+    {
+      "date": "2025-11-10",
+      "rainfall_mm": 19.7
+    },
+    {
+      "date": "2025-11-11",
+      "rainfall_mm": 11.4
+    },
+    {
+      "date": "2025-11-12",
+      "rainfall_mm": 2.9
+    },
+    {
+      "date": "2025-11-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-15",
+      "rainfall_mm": 0.9
+    },
+    {
+      "date": "2025-11-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-17",
+      "rainfall_mm": 5.8
+    },
+    {
+      "date": "2025-11-18",
+      "rainfall_mm": 3.1
+    },
+    {
+      "date": "2025-11-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-22",
+      "rainfall_mm": 168.1
+    },
+    {
+      "date": "2025-11-23",
+      "rainfall_mm": 1.7
+    },
+    {
+      "date": "2025-11-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-26",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-11-27",
+      "rainfall_mm": 3.4
+    },
+    {
+      "date": "2025-11-28",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-11-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-11-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-01",
+      "rainfall_mm": 2.6
+    },
+    {
+      "date": "2025-12-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-03",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-12-04",
+      "rainfall_mm": 3.5
+    },
+    {
+      "date": "2025-12-05",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-06",
+      "rainfall_mm": 6.1
+    },
+    {
+      "date": "2025-12-07",
+      "rainfall_mm": 3.5
+    },
+    {
+      "date": "2025-12-08",
+      "rainfall_mm": 3.9
+    },
+    {
+      "date": "2025-12-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-11",
+      "rainfall_mm": 2.8
+    },
+    {
+      "date": "2025-12-12",
+      "rainfall_mm": 6.5
+    },
+    {
+      "date": "2025-12-13",
+      "rainfall_mm": 39.0
+    },
+    {
+      "date": "2025-12-14",
+      "rainfall_mm": 2.1
+    },
+    {
+      "date": "2025-12-15",
+      "rainfall_mm": 3.0
+    },
+    {
+      "date": "2025-12-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-18",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-19",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-12-20",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-21",
+      "rainfall_mm": 5.6
+    },
+    {
+      "date": "2025-12-22",
+      "rainfall_mm": 0.9
+    },
+    {
+      "date": "2025-12-23",
+      "rainfall_mm": 1.5
+    },
+    {
+      "date": "2025-12-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-26",
+      "rainfall_mm": 10.6
+    },
+    {
+      "date": "2025-12-27",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2025-12-28",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2025-12-31",
+      "rainfall_mm": 1.7
+    },
+    {
+      "date": "2026-01-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-02",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-04",
+      "rainfall_mm": 9.7
+    },
+    {
+      "date": "2026-01-05",
+      "rainfall_mm": 12.5
+    },
+    {
+      "date": "2026-01-06",
+      "rainfall_mm": 9.8
+    },
+    {
+      "date": "2026-01-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-08",
+      "rainfall_mm": 17.5
+    },
+    {
+      "date": "2026-01-09",
+      "rainfall_mm": 67.3
+    },
+    {
+      "date": "2026-01-10",
+      "rainfall_mm": 2.0
+    },
+    {
+      "date": "2026-01-11",
+      "rainfall_mm": 6.3
+    },
+    {
+      "date": "2026-01-12",
+      "rainfall_mm": 26.2
+    },
+    {
+      "date": "2026-01-13",
+      "rainfall_mm": 66.0
+    },
+    {
+      "date": "2026-01-14",
+      "rainfall_mm": 1.6
+    },
+    {
+      "date": "2026-01-15",
+      "rainfall_mm": 5.6
+    },
+    {
+      "date": "2026-01-16",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2026-01-17",
+      "rainfall_mm": 97.7
+    },
+    {
+      "date": "2026-01-18",
+      "rainfall_mm": 6.9
+    },
+    {
+      "date": "2026-01-19",
+      "rainfall_mm": 19.9
+    },
+    {
+      "date": "2026-01-20",
+      "rainfall_mm": 117.5
+    },
+    {
+      "date": "2026-01-21",
+      "rainfall_mm": 9.1
+    },
+    {
+      "date": "2026-01-22",
+      "rainfall_mm": 0.8
+    },
+    {
+      "date": "2026-01-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-26",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-27",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-28",
+      "rainfall_mm": 37.2
+    },
+    {
+      "date": "2026-01-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-30",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-01-31",
+      "rainfall_mm": 2.6
+    },
+    {
+      "date": "2026-02-01",
+      "rainfall_mm": 6.9
+    },
+    {
+      "date": "2026-02-02",
+      "rainfall_mm": 5.0
+    },
+    {
+      "date": "2026-02-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-02-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-02-05",
+      "rainfall_mm": 32.8
+    },
+    {
+      "date": "2026-02-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-02-07",
       "rainfall_mm": 3.3
+    },
+    {
+      "date": "2026-02-08",
+      "rainfall_mm": 2.3
+    },
+    {
+      "date": "2026-02-09",
+      "rainfall_mm": 43.8
+    },
+    {
+      "date": "2026-02-10",
+      "rainfall_mm": 5.8
+    },
+    {
+      "date": "2026-02-11",
+      "rainfall_mm": 7.6
+    },
+    {
+      "date": "2026-02-12",
+      "rainfall_mm": 40.9
+    },
+    {
+      "date": "2026-02-13",
+      "rainfall_mm": 2.3
+    },
+    {
+      "date": "2026-02-14",
+      "rainfall_mm": 26.7
+    },
+    {
+      "date": "2026-02-15",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2026-02-16",
+      "rainfall_mm": 9.3
+    },
+    {
+      "date": "2026-02-17",
+      "rainfall_mm": 4.0
+    },
+    {
+      "date": "2026-02-18",
+      "rainfall_mm": 3.5
+    },
+    {
+      "date": "2026-02-19",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-02-20",
+      "rainfall_mm": 14.5
+    },
+    {
+      "date": "2026-02-21",
+      "rainfall_mm": 6.5
+    },
+    {
+      "date": "2026-02-22",
+      "rainfall_mm": 42.7
+    },
+    {
+      "date": "2026-02-23",
+      "rainfall_mm": 18.9
+    },
+    {
+      "date": "2026-02-24",
+      "rainfall_mm": 45.6
+    },
+    {
+      "date": "2026-02-25",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-02-26",
+      "rainfall_mm": 10.2
+    },
+    {
+      "date": "2026-02-27",
+      "rainfall_mm": 11.1
+    },
+    {
+      "date": "2026-02-28",
+      "rainfall_mm": 31.1
+    },
+    {
+      "date": "2026-03-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-02",
+      "rainfall_mm": 25.0
+    },
+    {
+      "date": "2026-03-03",
+      "rainfall_mm": 8.6
+    },
+    {
+      "date": "2026-03-04",
+      "rainfall_mm": 22.3
+    },
+    {
+      "date": "2026-03-05",
+      "rainfall_mm": 1.2
+    },
+    {
+      "date": "2026-03-06",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-07",
+      "rainfall_mm": 1.0
+    },
+    {
+      "date": "2026-03-08",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-09",
+      "rainfall_mm": 3.5
+    },
+    {
+      "date": "2026-03-10",
+      "rainfall_mm": 1.5
+    },
+    {
+      "date": "2026-03-11",
+      "rainfall_mm": 1.1
+    },
+    {
+      "date": "2026-03-12",
+      "rainfall_mm": 1.1
+    },
+    {
+      "date": "2026-03-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-15",
+      "rainfall_mm": 31.5
+    },
+    {
+      "date": "2026-03-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-17",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-18",
+      "rainfall_mm": 4.6
+    },
+    {
+      "date": "2026-03-19",
+      "rainfall_mm": 8.2
+    },
+    {
+      "date": "2026-03-20",
+      "rainfall_mm": 0.5
+    },
+    {
+      "date": "2026-03-21",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-22",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-23",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-24",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-25",
+      "rainfall_mm": 6.4
+    },
+    {
+      "date": "2026-03-26",
+      "rainfall_mm": 3.8
+    },
+    {
+      "date": "2026-03-27",
+      "rainfall_mm": 3.0
+    },
+    {
+      "date": "2026-03-28",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-29",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-03-30",
+      "rainfall_mm": 7.9
+    },
+    {
+      "date": "2026-03-31",
+      "rainfall_mm": 3.4
+    },
+    {
+      "date": "2026-04-01",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-02",
+      "rainfall_mm": 1.2
+    },
+    {
+      "date": "2026-04-03",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-04",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-05",
+      "rainfall_mm": 3.0
+    },
+    {
+      "date": "2026-04-06",
+      "rainfall_mm": 21.8
+    },
+    {
+      "date": "2026-04-07",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-08",
+      "rainfall_mm": 26.2
+    },
+    {
+      "date": "2026-04-09",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-10",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-11",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-12",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-13",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-14",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-15",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-16",
+      "rainfall_mm": 0.0
+    },
+    {
+      "date": "2026-04-17",
+      "rainfall_mm": 0.0
     }
   ],
   "totalizer_weekly": [
     {
-      "date": "2023-01-06",
-      "totalizer_m3": 50302,
-      "flow_m3_per_week": 302
+      "date": "2025-03-17",
+      "totalizer_m3": 949,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-01-13",
-      "totalizer_m3": 50626,
-      "flow_m3_per_week": 324
+      "date": "2025-03-24",
+      "totalizer_m3": 2209,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-01-20",
-      "totalizer_m3": 50915,
-      "flow_m3_per_week": 289
+      "date": "2025-03-31",
+      "totalizer_m3": 3469,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-01-27",
-      "totalizer_m3": 51150,
-      "flow_m3_per_week": 235
+      "date": "2025-04-07",
+      "totalizer_m3": 4729,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-02-03",
-      "totalizer_m3": 51499,
-      "flow_m3_per_week": 349
+      "date": "2025-04-14",
+      "totalizer_m3": 5989,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-02-10",
-      "totalizer_m3": 51748,
-      "flow_m3_per_week": 249
+      "date": "2025-04-21",
+      "totalizer_m3": 7249,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-02-17",
-      "totalizer_m3": 52002,
-      "flow_m3_per_week": 254
+      "date": "2025-04-28",
+      "totalizer_m3": 8509,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-02-24",
-      "totalizer_m3": 52343,
-      "flow_m3_per_week": 341
+      "date": "2025-05-05",
+      "totalizer_m3": 9769,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-03-03",
-      "totalizer_m3": 52585,
-      "flow_m3_per_week": 242
+      "date": "2025-05-12",
+      "totalizer_m3": 11029,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-03-10",
-      "totalizer_m3": 52899,
-      "flow_m3_per_week": 314
+      "date": "2025-05-19",
+      "totalizer_m3": 12289,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-03-17",
-      "totalizer_m3": 53189,
-      "flow_m3_per_week": 290
+      "date": "2025-05-26",
+      "totalizer_m3": 13549,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-03-24",
-      "totalizer_m3": 53423,
-      "flow_m3_per_week": 234
+      "date": "2025-06-02",
+      "totalizer_m3": 14809,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-03-31",
-      "totalizer_m3": 53622,
-      "flow_m3_per_week": 199
+      "date": "2025-06-09",
+      "totalizer_m3": 16069,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-04-07",
-      "totalizer_m3": 53891,
-      "flow_m3_per_week": 269
+      "date": "2025-06-16",
+      "totalizer_m3": 17329,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-04-14",
-      "totalizer_m3": 54065,
-      "flow_m3_per_week": 174
+      "date": "2025-06-23",
+      "totalizer_m3": 18589,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-04-21",
-      "totalizer_m3": 54309,
-      "flow_m3_per_week": 244
+      "date": "2025-06-30",
+      "totalizer_m3": 19849,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-04-28",
-      "totalizer_m3": 54527,
-      "flow_m3_per_week": 218
+      "date": "2025-07-07",
+      "totalizer_m3": 21109,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-05-05",
-      "totalizer_m3": 54725,
-      "flow_m3_per_week": 198
+      "date": "2025-07-14",
+      "totalizer_m3": 22369,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-05-12",
-      "totalizer_m3": 54917,
-      "flow_m3_per_week": 192
+      "date": "2025-07-21",
+      "totalizer_m3": 23629,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-05-19",
-      "totalizer_m3": 55105,
-      "flow_m3_per_week": 188
+      "date": "2025-07-28",
+      "totalizer_m3": 24889,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-05-26",
-      "totalizer_m3": 55280,
-      "flow_m3_per_week": 175
+      "date": "2025-08-04",
+      "totalizer_m3": 26149,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-06-02",
-      "totalizer_m3": 55456,
-      "flow_m3_per_week": 176
+      "date": "2025-08-11",
+      "totalizer_m3": 27409,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-06-09",
-      "totalizer_m3": 55578,
-      "flow_m3_per_week": 122
+      "date": "2025-08-18",
+      "totalizer_m3": 28669,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-06-16",
-      "totalizer_m3": 55710,
-      "flow_m3_per_week": 132
+      "date": "2025-08-25",
+      "totalizer_m3": 29929,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-06-23",
-      "totalizer_m3": 55878,
-      "flow_m3_per_week": 168
+      "date": "2025-09-01",
+      "totalizer_m3": 31189,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-06-30",
-      "totalizer_m3": 56017,
-      "flow_m3_per_week": 139
+      "date": "2025-09-08",
+      "totalizer_m3": 32449,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-07-07",
-      "totalizer_m3": 56165,
-      "flow_m3_per_week": 148
+      "date": "2025-09-15",
+      "totalizer_m3": 33709,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-07-14",
-      "totalizer_m3": 56306,
-      "flow_m3_per_week": 141
+      "date": "2025-09-22",
+      "totalizer_m3": 34969,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-07-21",
-      "totalizer_m3": 56451,
-      "flow_m3_per_week": 145
+      "date": "2025-09-29",
+      "totalizer_m3": 36229,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-07-28",
-      "totalizer_m3": 56588,
-      "flow_m3_per_week": 137
+      "date": "2025-10-06",
+      "totalizer_m3": 37669,
+      "flow_m3_per_week": ""
     },
     {
-      "date": "2023-08-04",
-      "totalizer_m3": 56736,
-      "flow_m3_per_week": 148
+      "date": "2025-10-07",
+      "totalizer_m3": 37704,
+      "flow_m3_per_week": 35
     },
     {
-      "date": "2023-08-11",
-      "totalizer_m3": 56856,
-      "flow_m3_per_week": 120
+      "date": "2025-10-08",
+      "totalizer_m3": 37758,
+      "flow_m3_per_week": 54
     },
     {
-      "date": "2023-08-18",
-      "totalizer_m3": 57001,
-      "flow_m3_per_week": 145
+      "date": "2025-10-09",
+      "totalizer_m3": 37792,
+      "flow_m3_per_week": 34
     },
     {
-      "date": "2023-08-25",
-      "totalizer_m3": 57117,
-      "flow_m3_per_week": 116
+      "date": "2025-10-10",
+      "totalizer_m3": 37840,
+      "flow_m3_per_week": 48
     },
     {
-      "date": "2023-09-01",
-      "totalizer_m3": 57242,
-      "flow_m3_per_week": 125
+      "date": "2025-10-11",
+      "totalizer_m3": 37882,
+      "flow_m3_per_week": 42
     },
     {
-      "date": "2023-09-08",
-      "totalizer_m3": 57357,
-      "flow_m3_per_week": 115
+      "date": "2025-10-12",
+      "totalizer_m3": 37924,
+      "flow_m3_per_week": 42
     },
     {
-      "date": "2023-09-15",
-      "totalizer_m3": 57478,
-      "flow_m3_per_week": 121
+      "date": "2025-10-13",
+      "totalizer_m3": 37980,
+      "flow_m3_per_week": 56
     },
     {
-      "date": "2023-09-22",
-      "totalizer_m3": 57593,
-      "flow_m3_per_week": 115
+      "date": "2025-10-14",
+      "totalizer_m3": 38027,
+      "flow_m3_per_week": 47
     },
     {
-      "date": "2023-09-29",
-      "totalizer_m3": 57738,
-      "flow_m3_per_week": 145
+      "date": "2025-10-15",
+      "totalizer_m3": 38078,
+      "flow_m3_per_week": 51
     },
     {
-      "date": "2023-10-06",
-      "totalizer_m3": 57937,
-      "flow_m3_per_week": 199
+      "date": "2025-10-16",
+      "totalizer_m3": 38127,
+      "flow_m3_per_week": 49
     },
     {
-      "date": "2023-10-13",
-      "totalizer_m3": 58085,
-      "flow_m3_per_week": 148
+      "date": "2025-10-17",
+      "totalizer_m3": 38176,
+      "flow_m3_per_week": 49
     },
     {
-      "date": "2023-10-20",
-      "totalizer_m3": 58236,
-      "flow_m3_per_week": 151
+      "date": "2025-10-18",
+      "totalizer_m3": 38273,
+      "flow_m3_per_week": 97
     },
     {
-      "date": "2023-10-27",
-      "totalizer_m3": 58410,
-      "flow_m3_per_week": 174
+      "date": "2025-10-19",
+      "totalizer_m3": 38305,
+      "flow_m3_per_week": 32
     },
     {
-      "date": "2023-11-03",
-      "totalizer_m3": 58679,
-      "flow_m3_per_week": 269
+      "date": "2025-10-20",
+      "totalizer_m3": 38387,
+      "flow_m3_per_week": 82
     },
     {
-      "date": "2023-11-10",
-      "totalizer_m3": 58978,
-      "flow_m3_per_week": 299
+      "date": "2025-10-21",
+      "totalizer_m3": 38409,
+      "flow_m3_per_week": 22
     },
     {
-      "date": "2023-11-17",
-      "totalizer_m3": 59222,
-      "flow_m3_per_week": 244
+      "date": "2025-10-22",
+      "totalizer_m3": 38485,
+      "flow_m3_per_week": 76
     },
     {
-      "date": "2023-11-24",
-      "totalizer_m3": 59437,
-      "flow_m3_per_week": 215
+      "date": "2025-10-23",
+      "totalizer_m3": 38503,
+      "flow_m3_per_week": 18
     },
     {
-      "date": "2023-12-01",
-      "totalizer_m3": 59665,
-      "flow_m3_per_week": 228
+      "date": "2025-10-24",
+      "totalizer_m3": 38521,
+      "flow_m3_per_week": 18
     },
     {
-      "date": "2023-12-08",
-      "totalizer_m3": 59907,
-      "flow_m3_per_week": 242
+      "date": "2025-10-25",
+      "totalizer_m3": 38593,
+      "flow_m3_per_week": 72
     },
     {
-      "date": "2023-12-15",
-      "totalizer_m3": 60154,
-      "flow_m3_per_week": 247
+      "date": "2025-10-26",
+      "totalizer_m3": 38616,
+      "flow_m3_per_week": 23
     },
     {
-      "date": "2023-12-22",
-      "totalizer_m3": 60394,
-      "flow_m3_per_week": 240
+      "date": "2025-10-27",
+      "totalizer_m3": 38670,
+      "flow_m3_per_week": 54
     },
     {
-      "date": "2023-12-29",
-      "totalizer_m3": 60610,
-      "flow_m3_per_week": 216
+      "date": "2025-10-28",
+      "totalizer_m3": 38692,
+      "flow_m3_per_week": 22
     },
     {
-      "date": "2024-01-05",
-      "totalizer_m3": 60923,
-      "flow_m3_per_week": 313
+      "date": "2025-10-29",
+      "totalizer_m3": 38769,
+      "flow_m3_per_week": 77
     },
     {
-      "date": "2024-01-12",
-      "totalizer_m3": 61196,
-      "flow_m3_per_week": 273
+      "date": "2025-10-30",
+      "totalizer_m3": 38817,
+      "flow_m3_per_week": 48
     },
     {
-      "date": "2024-01-19",
-      "totalizer_m3": 61577,
-      "flow_m3_per_week": 381
+      "date": "2025-10-31",
+      "totalizer_m3": 38868,
+      "flow_m3_per_week": 51
     },
     {
-      "date": "2024-01-26",
-      "totalizer_m3": 61893,
-      "flow_m3_per_week": 316
+      "date": "2025-11-01",
+      "totalizer_m3": 38915,
+      "flow_m3_per_week": 47
     },
     {
-      "date": "2024-02-02",
-      "totalizer_m3": 62219,
-      "flow_m3_per_week": 326
+      "date": "2025-11-02",
+      "totalizer_m3": 38915,
+      "flow_m3_per_week": 0
     },
     {
-      "date": "2024-02-09",
-      "totalizer_m3": 62460,
-      "flow_m3_per_week": 241
+      "date": "2025-11-03",
+      "totalizer_m3": 38915,
+      "flow_m3_per_week": 0
     },
     {
-      "date": "2024-02-16",
-      "totalizer_m3": 62811,
-      "flow_m3_per_week": 351
+      "date": "2025-11-04",
+      "totalizer_m3": 38915,
+      "flow_m3_per_week": 0
     },
     {
-      "date": "2024-02-23",
-      "totalizer_m3": 63106,
-      "flow_m3_per_week": 295
+      "date": "2025-11-05",
+      "totalizer_m3": 39109,
+      "flow_m3_per_week": 194
     },
     {
-      "date": "2024-03-01",
-      "totalizer_m3": 63419,
-      "flow_m3_per_week": 313
+      "date": "2025-11-06",
+      "totalizer_m3": 39160,
+      "flow_m3_per_week": 51
     },
     {
-      "date": "2024-03-08",
-      "totalizer_m3": 63692,
-      "flow_m3_per_week": 273
+      "date": "2025-11-07",
+      "totalizer_m3": 39207,
+      "flow_m3_per_week": 47
     },
     {
-      "date": "2024-03-15",
-      "totalizer_m3": 63951,
-      "flow_m3_per_week": 259
+      "date": "2025-11-08",
+      "totalizer_m3": 39255,
+      "flow_m3_per_week": 48
     },
     {
-      "date": "2024-03-22",
-      "totalizer_m3": 64207,
-      "flow_m3_per_week": 256
+      "date": "2025-11-09",
+      "totalizer_m3": 39305,
+      "flow_m3_per_week": 50
     },
     {
-      "date": "2024-03-29",
-      "totalizer_m3": 64429,
-      "flow_m3_per_week": 222
+      "date": "2025-11-10",
+      "totalizer_m3": 39353,
+      "flow_m3_per_week": 48
     },
     {
-      "date": "2024-04-05",
-      "totalizer_m3": 64599,
-      "flow_m3_per_week": 170
+      "date": "2025-11-11",
+      "totalizer_m3": 39403,
+      "flow_m3_per_week": 50
     },
     {
-      "date": "2024-04-12",
-      "totalizer_m3": 64867,
-      "flow_m3_per_week": 268
+      "date": "2025-11-12",
+      "totalizer_m3": 39460,
+      "flow_m3_per_week": 57
     },
     {
-      "date": "2024-04-19",
-      "totalizer_m3": 65084,
-      "flow_m3_per_week": 217
+      "date": "2025-11-13",
+      "totalizer_m3": 39510,
+      "flow_m3_per_week": 50
     },
     {
-      "date": "2024-04-26",
-      "totalizer_m3": 65339,
-      "flow_m3_per_week": 255
+      "date": "2025-11-14",
+      "totalizer_m3": 39543,
+      "flow_m3_per_week": 33
     },
     {
-      "date": "2024-05-03",
-      "totalizer_m3": 65506,
-      "flow_m3_per_week": 167
+      "date": "2025-11-15",
+      "totalizer_m3": 39595,
+      "flow_m3_per_week": 52
     },
     {
-      "date": "2024-05-10",
-      "totalizer_m3": 65644,
-      "flow_m3_per_week": 138
+      "date": "2025-11-16",
+      "totalizer_m3": 39637,
+      "flow_m3_per_week": 42
     },
     {
-      "date": "2024-05-17",
-      "totalizer_m3": 65831,
-      "flow_m3_per_week": 187
+      "date": "2025-11-17",
+      "totalizer_m3": 39688,
+      "flow_m3_per_week": 51
     },
     {
-      "date": "2024-05-24",
-      "totalizer_m3": 65967,
-      "flow_m3_per_week": 136
+      "date": "2025-11-18",
+      "totalizer_m3": 39730,
+      "flow_m3_per_week": 42
     },
     {
-      "date": "2024-05-31",
-      "totalizer_m3": 66112,
-      "flow_m3_per_week": 145
+      "date": "2025-11-19",
+      "totalizer_m3": 39778,
+      "flow_m3_per_week": 48
     },
     {
-      "date": "2024-06-07",
-      "totalizer_m3": 66270,
-      "flow_m3_per_week": 158
+      "date": "2025-11-20",
+      "totalizer_m3": 39819,
+      "flow_m3_per_week": 41
     },
     {
-      "date": "2024-06-14",
-      "totalizer_m3": 66408,
-      "flow_m3_per_week": 138
+      "date": "2025-11-21",
+      "totalizer_m3": 39885,
+      "flow_m3_per_week": 66
     },
     {
-      "date": "2024-06-21",
-      "totalizer_m3": 66600,
-      "flow_m3_per_week": 192
+      "date": "2025-11-22",
+      "totalizer_m3": 39919,
+      "flow_m3_per_week": 34
     },
     {
-      "date": "2024-06-28",
-      "totalizer_m3": 66724,
-      "flow_m3_per_week": 124
+      "date": "2025-11-23",
+      "totalizer_m3": 39970,
+      "flow_m3_per_week": 51
     },
     {
-      "date": "2024-07-05",
-      "totalizer_m3": 66885,
-      "flow_m3_per_week": 161
+      "date": "2025-11-24",
+      "totalizer_m3": 40020,
+      "flow_m3_per_week": 50
     },
     {
-      "date": "2024-07-12",
-      "totalizer_m3": 67035,
-      "flow_m3_per_week": 150
+      "date": "2025-11-25",
+      "totalizer_m3": 40065,
+      "flow_m3_per_week": 45
     },
     {
-      "date": "2024-07-19",
-      "totalizer_m3": 67198,
-      "flow_m3_per_week": 163
+      "date": "2025-11-26",
+      "totalizer_m3": 40114,
+      "flow_m3_per_week": 49
     },
     {
-      "date": "2024-07-26",
-      "totalizer_m3": 67321,
-      "flow_m3_per_week": 123
+      "date": "2025-11-27",
+      "totalizer_m3": 40161,
+      "flow_m3_per_week": 47
     },
     {
-      "date": "2024-08-02",
-      "totalizer_m3": 67454,
-      "flow_m3_per_week": 133
+      "date": "2025-11-28",
+      "totalizer_m3": 40198,
+      "flow_m3_per_week": 37
     },
     {
-      "date": "2024-08-09",
-      "totalizer_m3": 67582,
-      "flow_m3_per_week": 128
+      "date": "2025-11-29",
+      "totalizer_m3": 40257,
+      "flow_m3_per_week": 59
     },
     {
-      "date": "2024-08-16",
-      "totalizer_m3": 67710,
-      "flow_m3_per_week": 128
+      "date": "2025-11-30",
+      "totalizer_m3": 40307,
+      "flow_m3_per_week": 50
     },
     {
-      "date": "2024-08-23",
-      "totalizer_m3": 67865,
-      "flow_m3_per_week": 155
+      "date": "2025-12-01",
+      "totalizer_m3": 40360,
+      "flow_m3_per_week": 53
     },
     {
-      "date": "2024-08-30",
-      "totalizer_m3": 68029,
-      "flow_m3_per_week": 164
+      "date": "2025-12-08",
+      "totalizer_m3": 40742,
+      "flow_m3_per_week": 382
     },
     {
-      "date": "2024-09-06",
-      "totalizer_m3": 68158,
-      "flow_m3_per_week": 129
+      "date": "2025-12-15",
+      "totalizer_m3": 41173,
+      "flow_m3_per_week": 431
     },
     {
-      "date": "2024-09-13",
-      "totalizer_m3": 68309,
-      "flow_m3_per_week": 151
+      "date": "2025-12-22",
+      "totalizer_m3": 41583,
+      "flow_m3_per_week": 410
     },
     {
-      "date": "2024-09-20",
-      "totalizer_m3": 68459,
-      "flow_m3_per_week": 150
+      "date": "2025-12-29",
+      "totalizer_m3": 41978,
+      "flow_m3_per_week": 395
     },
     {
-      "date": "2024-09-27",
-      "totalizer_m3": 68619,
-      "flow_m3_per_week": 160
+      "date": "2026-01-05",
+      "totalizer_m3": 42356,
+      "flow_m3_per_week": 378
     },
     {
-      "date": "2024-10-04",
-      "totalizer_m3": 68834,
-      "flow_m3_per_week": 215
+      "date": "2026-01-12",
+      "totalizer_m3": 42677,
+      "flow_m3_per_week": 321
     },
     {
-      "date": "2024-10-11",
-      "totalizer_m3": 68984,
-      "flow_m3_per_week": 150
+      "date": "2026-01-19",
+      "totalizer_m3": 43103,
+      "flow_m3_per_week": 426
     },
     {
-      "date": "2024-10-18",
-      "totalizer_m3": 69134,
-      "flow_m3_per_week": 150
+      "date": "2026-01-26",
+      "totalizer_m3": 43506,
+      "flow_m3_per_week": 403
     },
     {
-      "date": "2024-10-25",
-      "totalizer_m3": 69324,
-      "flow_m3_per_week": 190
+      "date": "2026-02-02",
+      "totalizer_m3": 43882,
+      "flow_m3_per_week": 376
     },
     {
-      "date": "2024-11-01",
-      "totalizer_m3": 69524,
-      "flow_m3_per_week": 200
+      "date": "2026-02-09",
+      "totalizer_m3": 44433,
+      "flow_m3_per_week": 551
     },
     {
-      "date": "2024-11-08",
-      "totalizer_m3": 69726,
-      "flow_m3_per_week": 202
+      "date": "2026-02-16",
+      "totalizer_m3": 44893,
+      "flow_m3_per_week": 460
     },
     {
-      "date": "2024-11-15",
-      "totalizer_m3": 69916,
-      "flow_m3_per_week": 190
+      "date": "2026-02-23",
+      "totalizer_m3": 45374,
+      "flow_m3_per_week": 481
     },
     {
-      "date": "2024-11-22",
-      "totalizer_m3": 70097,
-      "flow_m3_per_week": 181
+      "date": "2026-03-02",
+      "totalizer_m3": 45806,
+      "flow_m3_per_week": 432
     },
     {
-      "date": "2024-11-29",
-      "totalizer_m3": 70333,
-      "flow_m3_per_week": 236
+      "date": "2026-03-09",
+      "totalizer_m3": 46396,
+      "flow_m3_per_week": 590
     },
     {
-      "date": "2024-12-06",
-      "totalizer_m3": 70632,
-      "flow_m3_per_week": 299
+      "date": "2026-03-16",
+      "totalizer_m3": 46923,
+      "flow_m3_per_week": 527
     },
     {
-      "date": "2024-12-13",
-      "totalizer_m3": 70888,
-      "flow_m3_per_week": 256
+      "date": "2026-03-23",
+      "totalizer_m3": 47421,
+      "flow_m3_per_week": 498
     },
     {
-      "date": "2024-12-20",
-      "totalizer_m3": 71135,
-      "flow_m3_per_week": 247
+      "date": "2026-03-30",
+      "totalizer_m3": 47969,
+      "flow_m3_per_week": 548
     },
     {
-      "date": "2024-12-27",
-      "totalizer_m3": 71450,
-      "flow_m3_per_week": 315
+      "date": "2026-04-06",
+      "totalizer_m3": 48459,
+      "flow_m3_per_week": 490
     },
     {
-      "date": "2025-01-03",
-      "totalizer_m3": 71789,
-      "flow_m3_per_week": 339
+      "date": "2026-04-13",
+      "totalizer_m3": 48923,
+      "flow_m3_per_week": 464
     }
   ],
   "water_level": [
     {
-      "date": "2023-03-17",
-      "water_level_m_rl": 19.497
+      "date": "2025-11-26",
+      "water_level_m_rl": 16.49
     },
     {
-      "date": "2023-03-28",
-      "water_level_m_rl": 21.755
+      "date": "2025-11-27",
+      "water_level_m_rl": 17.7
     },
     {
-      "date": "2023-03-29",
-      "water_level_m_rl": 21.799
+      "date": "2025-11-28",
+      "water_level_m_rl": 17.75
     },
     {
-      "date": "2023-05-12",
-      "water_level_m_rl": 16.771
+      "date": "2025-11-29",
+      "water_level_m_rl": 17.7
     },
     {
-      "date": "2023-06-09",
-      "water_level_m_rl": 13.002
+      "date": "2025-11-30",
+      "water_level_m_rl": 17.78
     },
     {
-      "date": "2023-06-16",
-      "water_level_m_rl": 12.975
+      "date": "2025-12-01",
+      "water_level_m_rl": 17.7
     },
     {
-      "date": "2023-07-03",
-      "water_level_m_rl": 9.322
+      "date": "2025-12-08",
+      "water_level_m_rl": 17.75
     },
     {
-      "date": "2023-08-05",
-      "water_level_m_rl": 8.159
+      "date": "2025-12-15",
+      "water_level_m_rl": 17.62
     },
     {
-      "date": "2023-09-02",
-      "water_level_m_rl": 10.728
+      "date": "2025-12-22",
+      "water_level_m_rl": 17.67
     },
     {
-      "date": "2023-09-11",
-      "water_level_m_rl": 10.289
+      "date": "2025-12-29",
+      "water_level_m_rl": 17.83
     },
     {
-      "date": "2023-10-12",
-      "water_level_m_rl": 12.001
+      "date": "2026-01-05",
+      "water_level_m_rl": 17.87
     },
     {
-      "date": "2023-10-14",
-      "water_level_m_rl": 11.365
+      "date": "2026-01-12",
+      "water_level_m_rl": 17.77
     },
     {
-      "date": "2023-11-06",
-      "water_level_m_rl": 18.848
+      "date": "2026-01-19",
+      "water_level_m_rl": 17.77
     },
     {
-      "date": "2023-11-25",
-      "water_level_m_rl": 18.344
+      "date": "2026-01-26",
+      "water_level_m_rl": 17.92
     },
     {
-      "date": "2024-03-25",
-      "water_level_m_rl": 21.301
+      "date": "2026-02-02",
+      "water_level_m_rl": 16.3
     },
     {
-      "date": "2024-04-08",
-      "water_level_m_rl": 19.803
+      "date": "2026-02-09",
+      "water_level_m_rl": 16.3
     },
     {
-      "date": "2024-04-23",
-      "water_level_m_rl": 19.998
+      "date": "2026-02-16",
+      "water_level_m_rl": 16.3
     },
     {
-      "date": "2024-07-25",
-      "water_level_m_rl": 11.689
+      "date": "2026-02-23",
+      "water_level_m_rl": 16.26
     },
     {
-      "date": "2024-08-19",
-      "water_level_m_rl": 9.078
+      "date": "2026-03-02",
+      "water_level_m_rl": 16.3
     },
     {
-      "date": "2024-09-09",
-      "water_level_m_rl": 9.161
+      "date": "2026-03-09",
+      "water_level_m_rl": 16.3
     },
     {
-      "date": "2024-09-15",
-      "water_level_m_rl": 12.025
+      "date": "2026-03-16",
+      "water_level_m_rl": 16.7
     },
     {
-      "date": "2024-10-16",
-      "water_level_m_rl": 12.882
+      "date": "2026-03-23",
+      "water_level_m_rl": 16.35
     },
     {
-      "date": "2024-11-08",
-      "water_level_m_rl": 17.606
+      "date": "2026-03-30",
+      "water_level_m_rl": 16.35
     },
     {
-      "date": "2024-11-22",
-      "water_level_m_rl": 18.664
+      "date": "2026-04-06",
+      "water_level_m_rl": 16.22
     },
     {
-      "date": "2024-12-18",
-      "water_level_m_rl": 18.726
+      "date": "2026-04-13",
+      "water_level_m_rl": 16.2
     }
   ]
 }
