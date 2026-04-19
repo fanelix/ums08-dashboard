@@ -292,7 +292,7 @@
   <!-- Chart 4: Double-mass -->
   <div class="chart-panel wide">
     <div class="chart-title">Double-Mass: Cumulative Rainfall vs Cumulative Seepage</div>
-    <div class="chart-sub">Cumulative seepage (m³, left) · Cumulative rainfall (mm, right) · Divergence indicates liner efficiency change</div>
+    <div class="chart-sub">Cumulative seepage m³ (left) · Cumulative rainfall mm (right) · Constant slope = stable liner efficiency · divergence = change in seepage behaviour</div>
     <div class="chart-wrap"><canvas id="chart-dm"></canvas></div>
   </div>
 </div>
@@ -771,19 +771,19 @@ function renderWLChart() {
     }
   });
 }
-	function renderDoublesMassChart() {
+function renderDoublesMassChart() {
   destroyChart('dm');
   var tot = DATA.totalizer;
   var rf  = DATA.rainfall;
 
-  // Build cumulative rainfall as a time series (daily)
+  // Build cumulative rainfall as a daily time series
   var cumRain = 0;
   var cumRainfallSeries = rf.map(function(r) {
     cumRain += r.rainfall_mm;
     return { x: r.date, y: Math.round(cumRain * 10) / 10 };
   });
 
-  // Cumulative seepage series — totalizer is already cumulative
+  // Cumulative seepage — totalizer_m3 is already cumulative
   var cumSeepageSeries = tot.map(function(t) {
     return { x: t.date, y: t.totalizer_m3 };
   });
@@ -794,7 +794,7 @@ function renderWLChart() {
       datasets: [
         {
           type: 'line',
-          label: 'Cumulative Seepage (m³)',
+          label: 'Totalizer (m³)',
           data: cumSeepageSeries,
           borderColor: '#f0a500',
           backgroundColor: 'rgba(240,165,0,0.08)',
@@ -810,11 +810,12 @@ function renderWLChart() {
         },
         {
           type: 'line',
-          label: 'Cumulative Rainfall (mm)',
+          label: 'Cumul. Rainfall (mm)',
           data: cumRainfallSeries,
           borderColor: '#4493f8',
-          backgroundColor: 'rgba(68,147,248,0.06)',
+          backgroundColor: 'rgba(68,147,248,0.0)',
           borderWidth: 1.5,
+          borderDash: [5, 3],
           pointRadius: 0,
           fill: false,
           tension: 0.1,
@@ -841,7 +842,7 @@ function renderWLChart() {
             label: function(item) {
               var v = item.parsed.y;
               if (item.datasetIndex === 0)
-                return ' Cum. seepage: ' + v.toLocaleString() + ' m³';
+                return ' Totalizer: ' + v.toLocaleString() + ' m³';
               return ' Cum. rainfall: ' + v.toFixed(1) + ' mm';
             }
           }
@@ -853,10 +854,10 @@ function renderWLChart() {
           time: {
             unit: 'month',
             tooltipFormat: 'yyyy-MM-dd',
-            displayFormats: { month: 'MMM yyyy' }
+            displayFormats: { month: 'dd MMM yy' }
           },
           grid: GRID,
-          ticks: { ...TICK, maxRotation: 0 }
+          ticks: { ...TICK, maxRotation: 45 }
         },
         y: {
           position: 'left',
@@ -864,7 +865,7 @@ function renderWLChart() {
           ticks: TICK,
           title: {
             display: true,
-            text: 'Cum. Seepage (m³)',
+            text: 'Totalizer (m³)',
             color: '#f0a500',
             font: { size: 9 }
           }
@@ -873,18 +874,19 @@ function renderWLChart() {
           position: 'right',
           grid: { display: false },
           ticks: TICK,
+          min: 0,
           title: {
             display: true,
-            text: 'Cum. Rainfall (mm)',
+            text: 'Cumul. Rainfall (mm)',
             color: '#4493f8',
             font: { size: 9 }
-          },
-          min: 0
+          }
         }
       }
     }
   });
 }
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────────
 function setStatus(text, cls) {
   var el = document.getElementById('status-badge');
