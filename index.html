@@ -315,12 +315,17 @@ var CONFIG = {
 // Google Sheets (Indonesian locale) exports decimals with comma: "13,3"
 // PapaParse sees this as a string; we convert quoted comma-decimals to float.
 function parseLocaleFloat(val) {
-  if (val === null || val === undefined || val === '') return null;
-  var s = String(val).trim().replace(/^"|"$/g, '');
-  // If value looks like "N,N" (Indonesian decimal), replace comma with dot
-  if (/^\d+,\d+$/.test(s)) s = s.replace(',', '.');
-  var f = parseFloat(s);
-  return isNaN(f) ? null : f;
+	if (val === null || val === undefined || val === '') return null;
+	var s = String(val).trim().replace(/^"|"$/g, '');
+	// Handle Indonesian locale: period = thousands sep, comma = decimal
+	// e.g. "1.234,5" → "1234.5"  |  "22,8" → "22.8"  |  "57,9" → "57.9"
+	if (s.indexOf(',') !== -1) {
+		// Has a comma — treat as decimal separator
+		s = s.replace(/\./g, '').replace(',', '.');
+	}
+	// Otherwise already dot-decimal or integer — pass through
+	var f = parseFloat(s);
+	return isNaN(f) ? null : f;
 }
 
 function parseLocaleInt(val) {
@@ -406,54 +411,54 @@ async function loadFromLocal() {
   DATA.waterLevel = json.water_level.map(r => ({ date: r.date, water_level_m_rl: r.water_level_m_rl }));
 }
 
-// ── CSV PARSERS ───────────────────────────────────────────────────────────────────
-// ── DATE NORMALIZER ──────────────────────────────────────────────────────────────
-// Google Sheets (Indonesian locale) exports dates as YYYY/MM/DD with slashes.
-// Normalize to ISO YYYY-MM-DD for consistent sorting and display.
+// ── DATE NORMALIZER ───────────────────────────────────────────────────────────────
+// Google Sheets (Indonesian locale) exports dates as YYYY/MM/DD (slashes).
+// This converts both YYYY/MM/DD and YYYY-MM-DD into canonical ISO YYYY-MM-DD.
 function normalizeDate(val) {
-  if (!val) return null;
-  var s = String(val).trim();
-  // Accept YYYY-MM-DD or YYYY/MM/DD
-  var m = s.match(/^(\d{4})[\/\-](\d{2})[\/\-](\d{2})$/);
-  if (!m) return null;
-  return m[1] + '-' + m[2] + '-' + m[3];
+	if (!val) return null;
+	var s = String(val).trim();
+	var m = s.match(/^(\d{4})[\/\-](\d{2})[\/\-](\d{2})$/);
+	if (!m) return null;
+	return m[1] + '-' + m[2] + '-' + m[3];
 }
 
-// ── NORMALIZE: strip BOM, trim all header keys ────────────────────────────────────
+// ── CSV HEADER NORMALIZER ─────────────────────────────────────────────────────────
+// Strips UTF-8 BOM (added by Excel on import) and lowercases all column headers
+// so "Rainfall_Mm", " rainfall_mm ", "RAINFALL_MM" all become "rainfall_mm".
 function normalizeCsvHeaders(text) {
-  text = text.replace(/^\uFEFF/, ''); // strip UTF-8 BOM
-  var lines = text.split('\n');
-  if (!lines.length) return text;
-  lines[0] = lines[0].split(',').map(h => h.trim().toLowerCase()).join(',');
-  return lines.join('\n');
+	text = text.replace(/^\uFEFF/, '');
+	var lines = text.split('\n');
+	if (!lines.length) return text;
+	lines[0] = lines[0].split(',').map(function(h){ return h.trim().toLowerCase(); }).join(',');
+	return lines.join('\n');
 }
 
 function parseCsvRainfall(text) {
-  text = normalizeCsvHeaders(text);
-  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
-  return res.data
-    .map(r => ({ date: normalizeDate(r.date), rainfall_mm: parseLocaleFloat(r.rainfall_mm) }))
-    .filter(r => r.date !== null && r.rainfall_mm !== null);
+	text = normalizeCsvHeaders(text);
+	var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+	return res.data
+		.map(function(r){ return { date: normalizeDate(r.date), rainfall_mm: parseLocaleFloat(r.rainfall_mm) }; })
+		.filter(function(r){ return r.date !== null && r.rainfall_mm !== null; });
 }
 
 function parseCsvTotalizer(text) {
-  text = normalizeCsvHeaders(text);
-  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
-  return res.data
-    .map(r => ({
-      date: normalizeDate(r.date),
-      totalizer_m3: parseLocaleInt(r.totalizer_m3),
-      flow_m3_per_week: parseLocaleInt(r.flow_m3_per_week)
-    }))
-    .filter(r => r.date !== null && r.totalizer_m3 !== null);
+	text = normalizeCsvHeaders(text);
+	var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+	return res.data
+		.map(function(r){ return {
+			date: normalizeDate(r.date),
+			totalizer_m3: parseLocaleInt(r.totalizer_m3),
+			flow_m3_per_week: parseLocaleInt(r.flow_m3_per_week)
+		}; })
+		.filter(function(r){ return r.date !== null && r.totalizer_m3 !== null; });
 }
 
 function parseCsvWaterLevel(text) {
-  text = normalizeCsvHeaders(text);
-  var res = Papa.parse(text, { header: true, skipEmptyLines: true });
-  return res.data
-    .map(r => ({ date: normalizeDate(r.date), water_level_m_rl: parseLocaleFloat(r.water_level_m_rl) }))
-    .filter(r => r.date !== null && r.water_level_m_rl !== null);
+	text = normalizeCsvHeaders(text);
+	var res = Papa.parse(text, { header: true, skipEmptyLines: true });
+	return res.data
+		.map(function(r){ return { date: normalizeDate(r.date), water_level_m_rl: parseLocaleFloat(r.water_level_m_rl) }; })
+		.filter(function(r){ return r.date !== null && r.water_level_m_rl !== null; });
 }
 // ── CLIENT-SIDE VALIDATION ────────────────────────────────────────────────────────
 function validate() {
