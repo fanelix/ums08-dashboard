@@ -334,7 +334,7 @@
 
 <div class="stats-row">
   <div class="stat-card">
-    <div class="stat-label">Cumulative Seepage</div>
+    <div class="stat-label">Cumulative Flowmeter Totalizer</div>
     <div class="stat-value" id="stat-total">—<span class="stat-unit">m³</span></div>
     <div class="stat-sub" id="stat-total-sub">—</div>
   </div>
@@ -384,7 +384,7 @@
 <div class="charts-grid">
   <!-- Chart 1: Totalizer + daily rainfall -->
   <div class="chart-panel wide">
-    <div class="chart-title">Cumulative Seepage Volume &amp; Daily Rainfall</div>
+    <div class="chart-title">Cumulative Flowmeter Totalizer Volume &amp; Daily Rainfall</div>
     <div class="chart-sub">Totalizer (m³) on left axis · Daily rainfall (mm) on right axis · 397 daily bars</div>
     <div class="chart-wrap"><canvas id="chart-totalizer"></canvas></div>
   </div>
@@ -405,15 +405,15 @@
 
   <!-- Chart 4: Double-mass -->
   <div class="chart-panel wide">
-    <div class="chart-title">Double-Mass: Cumulative Rainfall vs Cumulative Seepage</div>
-    <div class="chart-sub">Cumulative seepage m³ (left) · Cumulative rainfall mm (right) · Constant slope = stable liner efficiency · divergence = change in seepage behaviour</div>
+    <div class="chart-title">Double-Mass: Cumulative Rainfall vs Cumulative Flowmeter Totalizer</div>
+    <div class="chart-sub">Cumulative flowmeter totalizer m³ (left) · Cumulative rainfall mm (right) · Constant slope = stable liner efficiency · divergence = change in flowmeter totalizer behaviour</div>
     <div class="chart-wrap"><canvas id="chart-dm"></canvas></div>
   </div>
 </div>
 
 <footer>
   <span>UMS-08 PLS MONITORING · BSI TUJUH BUKIT</span>
-  <span>DATUM RL-34.313 m · <a href="https://script.google.com/macros/s/AKfycbxXWmp7MTpudip1-dCjjMDtEhw-S52CK8iKx3jjos20-w7mQFL-Qgdr66LhsQZYejsa4Q/exec" target="_blank">INPUT FORM ↗</a></span>
+  <span>DATUM RL-34.313 m · <a href="https://script.google.com/macros/s/AKfycbxrKO4hwpPygcBsMxqO6FeBkWHpAXFgvyf5p6uX4m1WAq61Lz6e7UqURT8D5taBsl6jUA/exec" target="_blank">INPUT FORM ↗</a></span>
 </footer>
 
 <script>
@@ -672,7 +672,7 @@ function validate() {
 function renderStats() {
   var tot = DATA.totalizer, rf = DATA.rainfall, wl = DATA.waterLevel;
 
-  // Cumulative seepage
+  // Cumulative flowmeter totalizer
   if (tot.length) {
     var last = tot[tot.length-1];
     document.getElementById('stat-total').innerHTML =
@@ -773,6 +773,8 @@ function renderTotalizerChart() {
         tooltip: {
           backgroundColor: '#ffffff',
           borderColor: '#d0d7de', borderWidth: 1,
+          titleColor: '#1f2328',
+          bodyColor: '#1f2328',
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -865,6 +867,8 @@ function renderFlowChart() {
         legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
           backgroundColor: '#ffffff', borderColor: '#d0d7de', borderWidth: 1,
+          titleColor: '#1f2328',
+          bodyColor: '#1f2328',
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -945,6 +949,8 @@ function renderWLChart() {
         legend: { position: 'top', labels: { boxWidth: 10, padding: 16 } },
         tooltip: {
           backgroundColor: '#ffffff', borderColor: '#d0d7de', borderWidth: 1,
+          titleColor: '#1f2328',
+          bodyColor: '#1f2328',
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont: { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
@@ -991,8 +997,8 @@ function renderDoublesMassChart() {
     return { x: r.date, y: Math.round(cumRain * 10) / 10 };
   });
 
-  // Cumulative seepage — totalizer_m3 is already cumulative
-  var cumSeepageSeries = tot.map(function(t) {
+  // Cumulative flowmeter totalizer — totalizer_m3 is already cumulative
+  var cumTotalizerSeries = tot.map(function(t) {
     return { x: t.date, y: t.totalizer_m3 };
   });
 
@@ -1003,7 +1009,7 @@ function renderDoublesMassChart() {
         {
           type: 'line',
           label: 'Totalizer (m³)',
-          data: cumSeepageSeries,
+          data: cumTotalizerSeries,
           borderColor: '#f0a500',
           backgroundColor: 'rgba(240,165,0,0.08)',
           borderWidth: 2,
@@ -1044,6 +1050,8 @@ function renderDoublesMassChart() {
           backgroundColor: '#ffffff',
           borderColor: '#d0d7de',
           borderWidth: 1,
+          titleColor: '#1f2328',
+          bodyColor: '#1f2328',
           titleFont: { family: "'IBM Plex Mono'", size: 10 },
           bodyFont:  { family: "'IBM Plex Mono'", size: 10 },
           callbacks: {
